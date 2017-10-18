@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>列表</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/sql-list.css" />
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/page.css" />
+		<link rel="stylesheet" href="css/sql-common.css" />
+		<link href="../js/notify/dm-notif-style.css" rel="stylesheet" />
+	</head>
+<style>
+#fileMessage{
+display:inline-block;
+width:70%;
+white-space: nowrap;
+overflow:hidden;
+text-overflow: ellipsis;
+color: blue;
+}
+</style>
+	<body ng-app="list" ng-controller="listCtrl">
+	<!-- 遮罩层DIV -->  
+    <div id="overlay" style="position: absolute; top: 0px; left: 0px;z-index: 10001;
+    dispaly: none; filter:alpha(opacity=60); background-color: #777; opacity: 0.5; -moz-opacity: 0.5;"></div>  
+    <!-- Loading提示 DIV -->  
+    <div id="loadingTip" style="z-index: 10002; position: fixed; display: none;">  
+        <img src="images/timg.gif" />  
+    </div>
+		<div id="dm-notif"></div>
+		<!--头部-->
+		<div class="sql-headwrap">
+			<div class="sql-headcontain">
+				<span class="sql-logo">多媒体一体机课程管理</span>
+				<a class="sql-login" ng-click="loginOut();">退出</a>
+				<a class="sql-login">&nbsp&nbsp&nbsp&nbsp</a>
+				<a id="user" class="sql-login" >{{username}}</a>
+			</div>
+		</div>
+		<!--头部-->
+		<div class="list-banner">
+			<img src="img/list-banner.png" />
+			<div>课件管理<span> / 一键发布，精彩共分享</span></div>
+		</div>
+		
+		<div class="list-wrap">
+			<ul class="list-nav">
+				<li class="clearfix">
+					<label>大分类：</label>
+					<ul id="tabgroup1">
+						<li ng-click="fileCateFilt($event, 0);">
+							<a class="tab-active">全部</a>
+						</li>
+						<li ng-repeat="x in filecatelist" ng-click="fileCateFilt($event, x.id);">
+							<a>{{x.name}}</a>
+						</li>
+					</ul>
+				</li>
+				<li class="clearfix">
+					<label>子分类：</label>
+					<ul id="tabgroup2">
+						<li ng-click="fileSubCateFilt($event, 0);">
+							<a class="tab-active">全部</a>
+						</li>
+						<li ng-repeat="x in filesubcatelist" ng-click="fileSubCateFilt($event, x.id);">
+							<a>{{x.name}}</a>
+						</li>
+					</ul>
+				</li>
+				<li class="clearfix">
+					<label>类型：</label>
+					<ul id="tabgroup3">
+						<li ng-click="typeFilt($event, 0);">
+							<a class="tab-active">全部</a>
+						</li>
+						<li ng-click="typeFilt($event, 1);">
+							<a>视频</a>
+						</li>
+						<li ng-click="typeFilt($event, 2);">
+							<a>音频</a>
+						</li>
+						<li ng-click="typeFilt($event, 3);">
+							<a>图书</a>
+						</li>
+						<li ng-click="typeFilt($event, 4);">
+							<a>图片</a>
+						</li>
+					</ul>
+				</li>
+				<li class="clearfix">
+					<label>状态：</label>
+					<ul id="tabgroup4">
+						<li ng-click="statusFilt($event, -1);">
+							<a class="tab-active">全部</a>
+						</li>
+						<li ng-click="statusFilt($event, 0);">
+							<a>待审核</a>
+						</li>
+						<li ng-click="statusFilt($event, 1);">
+							<a>已通过</a>
+						</li>
+						<li ng-click="statusFilt($event, 2);">
+							<a>已拒绝</a>
+						</li>
+					</ul>
+				</li>
+				<li class="clearfix">
+					<label>公开度：</label>
+					<ul id="tabgroup5">
+						<li ng-click="openFlgFilt($event, -1);">
+							<a class="tab-active">全部</a>
+						</li>
+						<li ng-click="openFlgFilt($event, 1);">
+							<a>公开</a>
+						</li>
+						<li ng-click="openFlgFilt($event, 0);">
+							<a>我的</a>
+						</li>
+					</ul>
+				</li>
+				<li class="clearfix">
+					<label>&nbsp</label>
+					<div class="list-search">
+						<input id="searchName" type="text" />
+						<button ng-click="searchFilt();"><img src="img/icon_search.png"/></button>
+					</div>
+				</li>
+			</ul>
+			<div class="list-tit">
+				<h3>课题列表<span> / List</span></h3>
+				<a onclick="$('.sql-lifixedwrap').show()"><i class="fa fa-plus"></i>发布课件</a>
+			</div>
+			<ul class="list-con">
+				<li ng-repeat="x in list">
+					<div class="list-one clearfix" ng-click="detail(x.id);">
+						<img src="../upload/file_cover/file_cover_{{x.id}}.png" />
+						<div class="list-right">
+							<h3 style="width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; display:block;"><span>{{x.status | status}}</span>{{x.name}}</h3>
+							<p>{{x.des}}</p>
+							<div class="list-one-info"><img src="img/icon_dianzan.png" /><span>{{x.loveCnt}}</span><img src="img/icon_liulan.png" /><span>{{x.cnt}}</span><img src="img/icon_xiazai.png" /><span>{{x.downloadCnt}}</span></div>
+							<a ng-click="deleteFile(x.id);">删除</a>
+						</div>
+					</div>
+				</li>
+				
+			</ul>
+			<div class="tcdPageCode"></div>
+		</div>
+		<!--底部-->
+		<div class="sql-footer">
+			<span>宋庆龄课件管理平台</span>
+			<span>技术支持：昆山必捷必信息技术有限公司</span>
+		</div>
+		<!--底部-->
+		<div class="sql-lifixedwrap">
+			<div class="sql-lipopbox">
+				<div class="sql-poptitle">
+					<span>发布课件</span>
+					<a class="sql-liclosebox" href="javascript:;" onclick="$('.sql-lifixedwrap').hide()">
+						<img src="img/sql-close.png" />
+					</a>
+				</div>
+				<form enctype="multipart/form-data" name="fileForm">
+					<div class="sql-popcontent">
+						<div class="sql-popeachrow clearfix">
+							<label>标题：</label>
+							<div>
+								<input id="uploadFile" type="file" class="sql-liloadinput" ng-model="uploadFile" required ng-src={{files[0].name}} onchange='angular.element(this).scope().fileChanged(this)'/>
+								<a class="sql-liloadbutton"><img src="img/load-file.png" />上传文件</a>
+								<span class="sql-lisupport"><a title="支持文件格式：
+视频：mp4, avi, flv, mov, ts, rmvb, mkv
+音频：mp3, wma, wav, flac, m4a
+图书：doc, docx, xls, xlsx, pdf, ppt, pptx, txt, epub
+图片：bmp, gif, png, jpeg, jpg">支持文件格式：.mp4 .mp3 .jpg .txt等</a></span>
+								<div class="sql-seletefile">
+									<img src="img/sql-clip.png" />
+									<span id="fileMessage" >{{files[0].name}}</span>
+									<a ng-click="files = null;$('#uploadFile').val('');"><img src="img/sql-delete.png" /></a>
+								</div>
+							</div>
+						</div>
+						<div class="sql-popeachrow clearfix">
+							<label>名称：</label>
+							<div>
+								<input id="fileName" type="text" class="sql-inputusual" ng-model="uploadNameValue"/>
+							</div>
+						</div>
+						<div class="sql-popeachrow clearfix">
+							<label>分类：</label>
+							<span class="sdl-relative">
+							  <select class="sql-selectxiala" ng-model="uploadCateValue" ng-change="updateFileCateFilt()">
+								<a class="sql-typeselect">
+									<img src="img/icon_sanjiao.png" />
+								</a>
+								<option value="0">全部</option>
+								<option ng-repeat="x in filecatelist" value="{{x.id}}">{{x.name}}</option>
+							</select>
+							</span>
+							<span class="sdl-relative">
+							   <span class="sql-publictitle">子分类：</span>
+								<span class="sdl-relative">
+									  <select class="sql-selectxiala" ng-model="uploadSubCateValue">
+										<a class="sql-typeselect">
+											<img src="img/icon_sanjiao.png" />
+										</a>
+										<option value="0">全部</option>
+										<option ng-repeat="x in updatesubcatelist" value="{{x.id}}">{{x.name}}</option>
+									</select>
+								</span>
+	
+							</span>
+	
+						</div>
+						<div class="sql-popeachrow clearfix">
+							<label>作者：</label>
+							<span class="sdl-relative">
+								<input type="text" class="sql-selectxiala" ng-model="uploadActorValue" />
+							</span>
+							<span class="sdl-relative">
+							   <span class="sql-publictitle">公开度：</span>
+								<span class="sdl-relative">
+									  <select class="sql-selectxiala" ng-model="uploadOpenFlgValue">
+										<a class="sql-typeselect">
+											<img src="img/icon_sanjiao.png" />
+										</a>
+										<option value="0">私有</option>
+										<option value="1">公开</option>
+									</select>
+								</span>
+	
+							</span>
+						</div>
+						<div class="sql-popeachrow clearfix">
+							<label>单位：</label>
+							<div>
+								<input type="text" class="sql-inputusual" ng-model="uploadCompanyValue"/>
+							</div>
+						</div>
+						<div class="sql-popeachrow clearfix">
+							<label>简介：</label>
+							<div>
+								<textarea class="sql-textareausual" ng-model="uploadDesValue"></textarea>
+							</div>
+						</div>
+						<div class="sql-popeachrow clearfix">
+							<label>封面：</label>
+							<div>
+								<div class="sql-loadcoverwrap">
+									<div class="sql-inputwrap">
+										<div class="sql-loadcover">
+											<img src="img/sql-add.png" />
+											<span>点击上传</span>
+											<input id="fileCover" type="file" accept="image/*" onchange='angular.element(this).scope().fileCoverChanged(this)'/>
+										</div>
+										<span class="sql-coversuggest">建议上传封面分辨率：800*640</span>
+									</div>
+									<div class="sql-imgwrap" style="display: none;">
+										<img id="uploadCover" ng-src="{{uploadCover}}" />
+										<a onclick="$('.sql-imgwrap').hide();$('.sql-inputwrap').show();$('#fileCover').val('')"><img src="img/sql-deletew.png"/></a>
+									</div>
+								</div>
+	
+							</div>
+						</div>
+						<a class="sql-publishbutton" ng-click="publish();">
+							发布
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/laydate/laydate.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="../js/ng-file-upload.js"></script>
+	<script type="text/javascript" src="../js/ng-file-upload-shim.js"></script>
+	<script type="text/javascript" src="js/list_controller.js"></script>
+	<script src="../js/notify/dm_notify.js"></script>
+	<script src="js/jquery.page.js"></script>
+	<script>
+		$(document).ready(function() {
+			
+			$('.list-right a').click(function(event) {
+				event.stopPropagation();
+			});
+			$('.sql-typeselect').click(function() {
+				$('.sql-xialacontent').hide();
+				$(this).parent().next('.sql-xialacontent').toggle();
+//				$(this).toggleClass('sql-typeselect-active');
+				
+			});
+			$('.sql-xialacontent a').click(function() {
+				$(this).parents('.sql-xialacontent').hide();				
+			});
+		})
+	</script>
+
+</html>

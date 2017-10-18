@@ -1,0 +1,95 @@
+<meta charset="UTF-8">
+<!-- page heading start-->
+<div class="page-heading">
+	<ul class="breadcrumb">
+		<li>
+			用户管理
+		</li>
+		<li>
+			用户列表
+		</li>
+		<li class="active"> 更新用户 </li>
+	</ul>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+	<div class="row">
+		<div class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading">
+					更新用户
+				</header>
+				<div class="panel-body">
+					<form class="form-horizontal adminex-form" name="updateUserForm" method="get">
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>账号</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" value="{{account}}" readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>密码</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" ng-model="pwd" value="" required maxlength="16">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>姓名</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="name" ng-model="name" value="{{name}}" maxlength="20" required>
+								<p class="help-block color-red" id="name_error"  ng-show="updateUserForm.name.$error.required">姓名不能为空！</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>手机号</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="phone" ng-model="phone" value="{{phone}}" maxlength="14" required>
+								<p class="help-block color-red" id="phone_error"  ng-show="updateUserForm.phone.$error.required">手机号不能为空！</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>角色</label>
+							<div class="col-sm-10 icheck">
+								<div class="square-green single-row">
+									<div class="radio newcheckbox">
+										<input tabindex="3" type="radio" value="1" name="role" ng-model="role" checked>
+										<label>网站管理员</label>
+									</div>
+									<div class="radio ">
+										<input tabindex="3" type="radio" value="2" name="role" ng-model="role">
+										<label>老师</label>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>状态</label>
+							<div class="col-sm-10 icheck">
+								<div class="square-green single-row">
+									<div class="radio newcheckbox">
+										<input tabindex="3" type="radio" name="state" value="1" ng-model="status" checked>
+										<label>可用</label>
+									</div>
+									<div class="radio ">
+										<input tabindex="3" type="radio" name="state" value="0" ng-model="status">
+										<label>不可用</label>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="pull-right">
+							<a class="btn btn-primary" type="submit" ng-click="updateDetails()">保存</a>
+							<a class="btn btn-default" type="button" href="#/userManage">取消</a>
+						</div>
+
+					</form>
+				</div>
+			</section>
+		</div>
+	</div>
+
+</div>
+<!--body wrapper end-->

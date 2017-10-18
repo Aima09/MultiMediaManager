@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="ThemeBucket">
+		<link rel="shortcut icon" href="#" type="image/png">
+
+		<title>资源管理</title>
+
+		<!--dynamic table-->
+		<link href="js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+		<link href="js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+		<link rel="stylesheet" href="js/data-tables/DT_bootstrap.css" />
+
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/style-responsive.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/zwei.css" />
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+	</head>
+
+	<body class="sticky-header">
+
+		<section>
+			<!-- left side start-->
+			<div class="left-side sticky-left-side">
+
+				<!--logo and iconic logo start-->
+				<div class="logo">
+					<a href="index.html"><img src="images/logo.png" alt=""></a>
+				</div>
+
+				<div class="logo-icon text-center">
+					<a href="index.html"><img src="images/logo_icon.png" alt=""></a>
+				</div>
+				<!--logo and iconic logo end-->
+
+				<div class="left-side-inner">
+
+					<!-- visible to small devices only -->
+					<div class="visible-xs hidden-sm hidden-md hidden-lg">
+						<div class="media logged-user">
+							<img alt="" src="images/photos/user-avatar.png" class="media-object">
+							<div class="media-body">
+								<h4><a href="#">John Doe</a></h4>
+								<span>"Hello There..."</span>
+							</div>
+						</div>
+
+						<h5 class="left-nav-title">Account Information</h5>
+						<ul class="nav nav-pills nav-stacked custom-nav">
+							<li>
+								<a href="#"><i class="fa fa-user"></i> <span>Profile</span></a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a>
+							</li>
+							<li>
+								<a href="#"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a>
+							</li>
+						</ul>
+					</div>
+
+					<!--sidebar nav start-->
+					<ul class="nav nav-pills nav-stacked custom-nav">
+
+						<li class="menu-list">
+							<a href=""><i class="fa fa-tasks"></i> <span>应用管理</span></a>
+							<ul class="sub-menu-list">
+								<li>
+									<a href="appManage.html"> 应用列表</a>
+								</li>
+								<!-- <li><a href="boxed_view.html"> 新增应用</a></li>           -->
+							</ul>
+						</li>
+						<li class="menu-list nav-active">
+							<a href=""><i class="fa fa-laptop"></i> <span>终端管理</span></a>
+							<ul class="sub-menu-list">
+								<li class="active">
+									<a href="terminalManage.html"> 终端列表</a>
+								</li>
+
+							</ul>
+						</li>
+						<li class="menu-list">
+							<a href=""><i class="fa fa-user"></i> <span>用户管理</span></a>
+							<ul class="sub-menu-list">
+								<li>
+									<a href="userManage.html"> 用户列表</a>
+								</li>
+
+							</ul>
+						</li>
+
+						<li class="menu-list">
+							<a href=""><i class="fa fa-cogs"></i> <span>版本管理</span></a>
+							<ul class="sub-menu-list">
+								<li>
+									<a href="versionManage.html"> 版本列表</a>
+								</li>
+								<li>
+									<a href="versionHistory.html"> 推送历史</a>
+								</li>
+
+							</ul>
+						</li>
+					</ul>
+					<!--sidebar nav end-->
+
+				</div>
+			</div>
+			<!-- left side end-->
+
+			<!-- main content start-->
+			<div class="main-content">
+
+				<!-- header section start-->
+				<div class="header-section">
+
+					<!--toggle button start-->
+					<a class="toggle-btn"><i class="fa fa-bars"></i></a>
+					<!--toggle button end-->
+
+					<!--notification menu start -->
+					<div class="menu-right">
+						<ul class="notification-menu">
+							
+							
+							
+							<li>
+								<a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+									 John Doe
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+									
+									<li>
+										<a href="login.html"><i class="fa fa-sign-out"></i> Log Out</a>
+									</li>
+								</ul>
+							</li>
+
+						</ul>
+					</div>
+					<!--notification menu end -->
+
+				</div>
+				<!-- header section end-->
+
+				<!-- page heading start-->
+				<div class="page-heading">
+					<ul class="breadcrumb">
+						<li>
+							终端管理
+						</li>
+
+						<li> 终端列表 </li>
+						<li class="active"> 资源列表 </li>
+					</ul>
+				</div>
+				<!-- page heading end-->
+
+				<!--body wrapper start-->
+				<div class="wrapper">
+					<div class="row">
+						<div class="col-sm-12">
+							<section class="panel">
+								<header class="panel-heading">
+									资源列表
+
+								</header>
+
+								<div class="panel-body">
+									<div class="adv-table">
+										
+										<table class="table table-bordered table-striped">
+											<thead>
+												<tr>
+													<th>序号</th>
+													<th>名称</th>
+													<th>大小</th>													
+													<th>操作</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr class="gradeX">
+													<td>1</td>
+													<td>资源名称1</td>
+													<td>1G</td>
+												
+													<td>
+														<a href="sourcedetail.html" target="_blank">查看详情</a>
+														
+														<a data-toggle="modal" href="#myModal">删除</a>
+														
+													</td>
+												</tr>
+												<tr class="gradeX">
+													<td>1</td>
+													<td>资源名称1</td>
+													<td>1G</td>
+												
+													<td>
+														<a href="sourcedetail.html" target="_blank">查看详情</a>
+														
+														<a data-toggle="modal" href="#myModal">删除</a>
+														
+													</td>
+												</tr><tr class="gradeX">
+													<td>1</td>
+													<td>资源名称1</td>
+													<td>1G</td>
+												
+													<td>
+														<a href="sourcedetail.html" target="_blank">查看详情</a>
+														
+														<a data-toggle="modal" href="#myModal">删除</a>
+														
+													</td>
+												</tr><tr class="gradeX">
+													<td>1</td>
+													<td>资源名称1</td>
+													<td>1G</td>
+												
+													<td>
+														<a href="sourcedetail.html" target="_blank">查看详情</a>
+														
+														<a data-toggle="modal" href="#myModal">删除</a>
+														
+													</td>
+												</tr><tr class="gradeX">
+													<td>1</td>
+													<td>资源名称1</td>
+													<td>1G</td>
+												
+													<td>
+														<a href="sourcedetail.html" target="_blank">查看详情</a>
+														
+														<a data-toggle="modal" href="#myModal">删除</a>
+														
+													</td>
+												</tr>
+
+											</tbody>
+
+										</table>
+										<div class="">
+											<div class="pull-left dataTables_info">第1~12条数据，共35条记录</div>
+											<ul class="pagination pull-right">
+												<li>
+													<a href="#">«</a>
+												</li>
+												<li>
+													<a href="#">1</a>
+												</li>
+												<li>
+													<a href="#">2</a>
+												</li>
+												<li>
+													<a href="#">3</a>
+												</li>
+												<li class="active">
+													<a href="#">4</a>
+												</li>
+												<li>
+													<a href="#">5</a>
+												</li>
+												<li>
+													<a href="#">»</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+
+				</div>
+				<!--body wrapper end-->
+                 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h3 class="modal-title">删除</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>你确定要删除该资源吗？</p>
+                        
+
+                    </div>
+                    <div class="modal-footer">
+                    	<button class="btn btn-primary" type="button">确定</button>
+                        <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+       
+        
+		
+        
+        </div>
+
+			</div>
+			<!-- main content end-->
+		</section>
+
+		<!-- Placed js at the end of the document so the pages load faster -->
+		<script src="js/jquery-1.10.2.min.js"></script>
+		<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+		<script src="js/jquery-migrate-1.2.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/modernizr.min.js"></script>
+		<script src="js/jquery.nicescroll.js"></script>
+
+		<!--dynamic table-->
+		<script type="text/javascript" language="javascript" src="js/advanced-datatable/js/jquery.dataTables.js"></script>
+		<script type="text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
+		<!--dynamic table initialization -->
+		<script src="js/dynamic_table_init.js"></script>
+
+		<!--common scripts for all pages-->
+		<script src="js/scripts.js"></script>
+
+	</body>
+
+</html>

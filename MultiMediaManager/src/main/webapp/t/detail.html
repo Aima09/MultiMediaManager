@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>详情</title>
+		<link rel="stylesheet" href="css/sql-details.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/sql-common.css" />
+		<link href="../js/notify/dm-notif-style.css" rel="stylesheet" />
+	</head>
+	<body ng-app="detail" ng-controller="detailCtrl">
+		<div id="dm-notif"></div>
+		<!--头部-->
+		<div class="sql-headwrap">
+			<div class="sql-headcontain">
+				<span class="sql-logo">多媒体一体机课程管理</span>
+				<a id="exit" class="sql-login" ng-click="loginOut();">退出</a>
+				<a class="sql-login">&nbsp&nbsp&nbsp&nbsp</a>
+				<a id="login" class="sql-login">{{username}}</a>
+			</div>
+		</div>
+		<!--头部-->
+		<div class="sd-containwrap">
+			<div class="sd-contain">
+				<div class="sd-containinfo clearfix">
+					<div class="sd-infoleft">
+						<img id="cover" src="img/sd-cover.png" />
+					</div>
+					<div class="sd-inforight">
+						<div class="sd-infotitlewrap">
+							<span class="sd-infotitle">{{name}}</span>
+							<div class="sd-infotype">
+								<span>{{openFlg | openFlg}}</span>
+								<span>{{status | status}}</span>
+							</div>
+						</div>
+						<div class="sqld-infostyle">
+							类型：<span>{{type | type}}</span>
+						</div>
+						<div class="sqld-infostyle">
+							作者：<span>{{actor}}</span>
+						</div>
+						<div class="sqld-infostyle">
+							上传日期：<span>{{time | time}}</span>
+						</div>
+						<div class="sqld-sharewrap">
+							<span>{{loveCnt}}</span>
+							<span>{{cnt}}</span>
+							<span>{{downloadCnt}}</span>
+						</div>
+						<div class="sqld-thumbupwrap">
+							<a class="sqld-thumbup" ng-click="love()">								
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="sqld-middlewrap">
+					<div class="sqld-brieftitle">简介</div>
+					<div class="sqld-brief">
+						{{des}}
+					</div>
+				</div>
+				<div class="sqld-middlewrap">
+					<div class="sqld-brieftitle">评论</div>
+					<div class="sqld-comment clearfix">
+						<textarea id="commentMsg"></textarea>
+						<a class="sqld-sendcomment" href="javascript:;" ng-click="publishComment();">发表评论</a>
+					</div>
+					<div class="sqld-allcomment">
+						<div class="sqld-commentone" ng-repeat="x in commentlist">
+							<div class="sqld-commentname">
+								<span>{{x.createUserName}}</span>
+								<span>{{x.createDatetime | time}}</span>
+							</div>
+							<div class="sqld-commentbrief">{{x.msg}}</div>
+						</div>
+						<div class="sqld-loadmore"><a ng-click="loadMore();">加载更多</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--底部-->
+		<div class="sql-footer">
+			<span>宋庆龄课件管理平台</span>
+			<span>技术支持：昆山必捷必信息技术有限公司</span>
+		</div>
+		<!--底部-->
+		<div class="login-pop">
+			<div class="login-pop-con">
+				<div class="login-pop-tit">
+					<span>发布课件</span>
+					<a class="login-pop-close" href="javascript:;" onclick="$('.login-pop').hide()">
+						<img src="img/sql-close.png" />
+					</a>
+				</div>
+				<div class="login-pop-group">
+					<div class="login-pop-input clearfix">
+						<label>用户名：</label>
+						<input type="text" />
+					</div>
+					<div class="login-pop-input clearfix">
+						<label>密码：</label>
+						<input type="text" />
+					</div>
+					<a class="login-pop-btn">登录</a>
+				</div>
+			</div>
+		</div>
+	<script src="js/jquery.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="../js/notify/dm_notify.js"></script>
+	<script src="js/detail_controller.js"></script>
+	<script>
+		$(document).ready(function() {			
+				$(".sqld-thumbup").on("click",function() {					
+					$(this).addClass("sqld-active");
+				});			
+		});
+	</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录页面</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/login.css" />
+	</head>
+	<body ng-app="login" ng-controller="loginCtrl">
+		<div class="login-wrap">
+			<div class="login-con">
+				<h2>多媒体一体机课件管理</h2>
+				<div class="login-group">
+					<label>用户名</label>
+					<div class="login-input"><input type="text" id="username"/><img src="img/icon_touxiang.png"/></div>
+					<label>密码</label>
+					<div class="login-input"><input type="password" id="userpwd" ng-keyup="mykeyup($event);"/><img src="img/icon_mima.png"/></div>
+					<div id="divMsg" style="color:#FF0000"></div>
+					<a ng-click="login();">登录</a>
+				</div>
+			</div>
+			<div class="login-footer">
+				<span>多媒体一体机课件管理平台</span>
+				<span>技术支持：昆山必捷必信息技术有限公司</span>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/login_controller.js"></script>
+	</body>
+</html>

@@ -1,0 +1,118 @@
+<meta charset="UTF-8">
+<!-- page heading start-->
+<div class="page-heading">
+	<ul class="breadcrumb">
+		<li>版本管理</li>
+
+		<li class="active">版本列表</li>
+	</ul>
+</div>
+<!-- page heading end-->
+
+<!--body wrapper start-->
+<div class="wrapper">
+	<div class="row">
+		<div class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading"> 版本列表 </header>
+
+				<div class="panel-body">
+					<div class="adv-table">
+						<div class="newposition">
+							<div class="btn-group pull-right">
+								<a id="editable-sample_new" class="btn btn-primary newBtn"
+									href="#/addVersion"> 添加版本 <i class="fa fa-plus"></i>
+								</a>
+							</div>
+
+						</div>
+						<table class="table table-bordered table-striped" style="table-layout:fixed">
+							<thead>
+								<tr>
+									<th width="10%">序号</th>
+									<th width="15%">版本名</th>
+									<th width="30%">版本描述</th>
+									<th width="15%">上次推送日期</th>
+									<th width="15%">推送状态</th>
+									<th width="15%">操作</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in list" class="gradeX">
+									<td>{{(currentPage-1)*10+($index+1)}}</td>
+									<td>{{x.name}}</td>
+									<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{x.des}}</td>
+									<td>{{x.pushDatetime | datetime}}</td>
+									<td>{{x.pushDatetime | is_push}}</td>
+									<td><a data-toggle="modal" data-target="#myModal" ng-click="setVersionId(x.id)">删除</a> <a
+										data-toggle="modal" data-target="#myModal1" ng-click="push(x.id,x.des)">推送</a></td>
+								</tr>
+							</tbody>
+
+						</table>
+						<div class="">
+							<pager page-count="pageCount" total-count="totalCount"
+								current-page="currentPage" on-page-change="onPageChange()"
+								first-text="首页" last-text="尾页" prev-text="上一页" next-text="下一页"></pager>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+<!--body wrapper end-->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+	tabindex="-1" id="myModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h3 class="modal-title">删除</h3>
+			</div>
+			<div class="modal-body">
+				<p>你确定要删除该版本吗？</p>
+
+
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" type="button" ng-click="deleteVersion()">确定</button>
+				<button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+
+			</div>
+		</div>
+	</div>
+</div>
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog"
+	tabindex="-1" id="myModal1" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h3 class="modal-title">推送</h3>
+			</div>
+			<div class="modal-body">
+				<p>你确定要推送该版本吗？</p>
+
+
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" type="button" ng-click="surePush()">确定</button>
+				<button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".menu-list li").removeClass("nav-active");
+		$(".banner li").removeClass("active");
+		$("#version_p").addClass("nav-active");
+		$("#history").removeClass("active");
+		$("#version").addClass("active");
+	});
+</script>

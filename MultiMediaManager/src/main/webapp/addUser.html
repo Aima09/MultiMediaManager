@@ -1,0 +1,97 @@
+<meta charset="UTF-8">
+<!-- page heading start-->
+<div class="page-heading">
+	<ul class="breadcrumb">
+		<li>
+			用户管理
+		</li>
+		<li>
+			用户列表
+		</li>
+		<li class="active"> 新增用户 </li>
+	</ul>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+	<div class="row">
+		<div class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading">
+					新增用户
+				</header>
+				<div class="panel-body">
+					<form class="form-horizontal adminex-form" name="versionForm" method="get">
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>账号</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="account"  ng-model="account" required>
+								<p class="help-block color-red" id="account_error"  ng-show="versionForm.account.$error.required">账号不能为空！</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>密码</label>
+							<div class="col-sm-10">
+								<input type="password" name="pwd" ng-model="pwd" class="form-control" required>
+								<p class="help-block color-red" id="pwd_error"  ng-show="versionForm.pwd.$error.required">密码不能为空！</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>姓名</label>
+							<div class="col-sm-10">
+								<input type="text" name="name" ng-model="name" class="form-control" required>
+								<p class="help-block color-red" id="name_error"  ng-show="versionForm.name.$error.required">姓名不能为空！</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>手机号</label>
+							<div class="col-sm-10">
+								<input type="text" name="phone" ng-model="phone" class="form-control" required>
+								<p class="help-block color-red" id="phone_error"  ng-show="versionForm.phone.$error.required">手机号不能为空！</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>角色</label>
+							<div class="col-sm-10 icheck">
+								<div class="square-green single-row">
+									<div class="radio newcheckbox">
+										<input tabindex="3" type="radio" value="1" ng-model="role" name="role">
+										<label>网站管理员</label>
+									</div>
+									<div class="radio ">
+										<input tabindex="3" type="radio" value="2" ng-model="role" name="role">
+										<label>老师</label>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>状态</label>
+							<div class="col-sm-10 icheck">
+								<div class="square-green single-row">
+									<div class="radio newcheckbox">
+										<input tabindex="3" type="radio" value="1" ng-model="status" name="state">
+										<label>可用</label>
+									</div>
+									<div class="radio ">
+										<input tabindex="3" type="radio" value="0" ng-model="status" name="state">
+										<label>不可用</label>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="pull-right">
+							<a class="btn btn-primary" type="submit" ng-click="addUser()" >保存</a>
+							<a class="btn btn-default" type="button" href="#/userManage">取消</a>
+						</div>
+
+					</form>
+				</div>
+			</section>
+		</div>
+	</div>
+
+</div>
+<!--body wrapper end-->

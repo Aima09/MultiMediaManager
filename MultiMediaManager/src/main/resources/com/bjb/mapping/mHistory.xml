@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjb.mapper.MHistoryMapper">
+	<resultMap id="mHistoryResultMap" type="MHistory">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="version_id" property="version_id" jdbcType="INTEGER" />
+		<result column="des" property="des" jdbcType="VARCHAR" />
+		<result column="del_flg" property="del_flg" jdbcType="INTEGER" />
+		<result column="create_datetime" property="create_datetime" jdbcType="TIMESTAMP" />
+		<result column="create_user_id" property="create_user_id" jdbcType="INTEGER" />
+		<result column="update_datetime" property="update_datetime" jdbcType="TIMESTAMP" />
+		<result column="update_user_id" property="update_user_id" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="mHistoryResultMap1" type="MHistory">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="version_id" property="version_id" jdbcType="INTEGER" />
+		<result column="des" property="des" jdbcType="VARCHAR" />
+		<result column="version_name" property="version_name" jdbcType="VARCHAR" />
+		<result column="del_flg" property="del_flg" jdbcType="INTEGER" />
+		<result column="create_datetime" property="create_datetime" jdbcType="TIMESTAMP" />
+		<result column="create_user_id" property="create_user_id" jdbcType="INTEGER" />
+		<result column="update_datetime" property="update_datetime" jdbcType="TIMESTAMP" />
+		<result column="update_user_id" property="update_user_id" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="columns">
+		id, version_id, des, del_flg, create_datetime, create_user_id, update_datetime, update_user_id
+	</sql>
+	
+	<sql id="columns1">
+		id, version_id, des, del_flg, create_datetime, create_user_id, update_datetime, update_user_id, version_name
+	</sql>
+	
+	<sql id="insertValues">
+		null,
+		#{version_id, jdbcType=INTEGER},
+		#{des, jdbcType=VARCHAR},
+		#{del_flg, jdbcType=INTEGER},
+		#{create_datetime, jdbcType=TIMESTAMP},
+		#{create_user_id, jdbcType=INTEGER},
+		#{update_datetime, jdbcType=TIMESTAMP},
+		#{update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="insertListValues">
+		null,
+		#{dto.version_id, jdbcType=INTEGER},
+		#{dto.des, jdbcType=VARCHAR},
+		#{dto.del_flg, jdbcType=INTEGER},
+		#{dto.create_datetime, jdbcType=TIMESTAMP},
+		#{dto.create_user_id, jdbcType=INTEGER},
+		#{dto.update_datetime, jdbcType=TIMESTAMP},
+		#{dto.update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updateValues">
+		id=#{id, jdbcType=INTEGER},
+		version_id=#{version_id, jdbcType=INTEGER},
+		des=#{des, jdbcType=VARCHAR},
+		del_flg=#{del_flg, jdbcType=INTEGER},
+		create_datetime=#{create_datetime, jdbcType=TIMESTAMP},
+		create_user_id=#{create_user_id, jdbcType=INTEGER},
+		update_datetime=#{update_datetime, jdbcType=TIMESTAMP},
+		update_user_id=#{update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updateListValues">
+		id=#{dto.id, jdbcType=INTEGER},
+		version_id=#{dto.version_id, jdbcType=INTEGER},
+		des=#{dto.des, jdbcType=VARCHAR},
+		del_flg=#{dto.del_flg, jdbcType=INTEGER},
+		create_datetime=#{dto.create_datetime, jdbcType=TIMESTAMP},
+		create_user_id=#{dto.create_user_id, jdbcType=INTEGER},
+		update_datetime=#{dto.update_datetime, jdbcType=TIMESTAMP},
+		update_user_id=#{dto.update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updatePartialValues">
+		id=#{id, jdbcType=INTEGER}
+		<if test="version_id != null">
+			<trim prefix=",">
+				version_id=#{version_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="des != null">
+			<trim prefix=",">
+				des=#{des, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="del_flg != null">
+			<trim prefix=",">
+				del_flg=#{del_flg, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="create_datetime != null">
+			<trim prefix=",">
+				create_datetime=#{create_datetime, jdbcType=TIMESTAMP}
+			</trim>
+		</if>
+		<if test="create_user_id != null">
+			<trim prefix=",">
+				create_user_id=#{create_user_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="update_datetime != null">
+			<trim prefix=",">
+				update_datetime=#{update_datetime, jdbcType=TIMESTAMP}
+			</trim>
+		</if>
+		<if test="update_user_id != null">
+			<trim prefix=",">
+				update_user_id=#{update_user_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+	</sql>
+	
+	<sql id="whereCondition">
+		<if test="id != null">
+			and id = #{id, jdbcType=INTEGER}
+		</if>
+		<if test="version_id != null">
+			and version_id = #{version_id, jdbcType=INTEGER}
+		</if>
+		<if test="des != null">
+			<if test="des.length() > 0">
+				and instr(des, #{des, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="del_flg != null">
+			<if test="del_flg.length() > 0">
+				and instr(del_flg, #{del_flg, jdbcType=INTEGER}) > 0
+			</if>
+		</if>
+		<if test="create_datetime != null">
+			and create_datetime = #{create_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="create_user_id != null">
+			and create_user_id = #{create_user_id, jdbcType=INTEGER}
+		</if>
+		<if test="update_datetime != null">
+			and update_datetime = #{update_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="update_user_id != null">
+			and update_user_id = #{update_user_id, jdbcType=INTEGER}
+		</if>
+	</sql>
+
+	<sql id="whereCondition1">
+		<if test="version_id != null">
+			and mh.version_id = #{version_id, jdbcType=INTEGER}
+		</if>
+		<if test="des != null">
+			<if test="des.length() > 0">
+				and instr(mh.des, #{des, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="check_date != null">
+			and unix_timestamp(mh.create_datetime) > #{check_date, jdbcType=BIGINT}
+		</if>
+	</sql>
+	
+	<select id="count" resultType="int">
+		select count(id)
+		from m_history
+	</select>
+	
+	<select id="countByDto" resultType="int" parameterType="MHistory">
+		select count(id)
+		from m_history
+		where 1=1 <include refid="whereCondition"/>
+	</select>
+	
+	<select id="findById" resultMap="mHistoryResultMap" parameterType="int">
+		select <include refid="columns"/>
+		from m_history
+		where id = #{id}
+	</select>
+	
+	<select id="findAll" resultMap="mHistoryResultMap">
+		select <include refid="columns"/>
+		from m_history
+	</select>
+	
+	<select id="findByDto" resultMap="mHistoryResultMap1" parameterType="MHistory">
+		SELECT
+			mh.id,
+			mh.des,
+			mh.version_id,
+			mv.name as version_name
+		FROM
+			m_history mh
+		INNER JOIN m_version mv ON mv.id = mh.version_id AND mv.del_flg = 0
+		where mh.del_flg = 0 <include refid="whereCondition1"/>
+		order by mh.id desc
+	</select>
+	
+	<insert id="insert" parameterType="MHistory">
+		insert into m_history
+		(<include refid="columns"/>)
+		values(<include refid="insertValues"/>);
+		<selectKey resultType="int" keyProperty="id">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertList" parameterType="java.util.List">
+		insert into m_history
+		(<include refid="columns"/>)
+		values
+			<foreach collection="list" item="dto" index="index" separator=",">
+				(<include refid="insertListValues"/>)
+			</foreach>
+	</insert>
+	
+	<update id="update" parameterType="MHistory">
+		update m_history
+		set <include refid="updateValues"/>
+		where id = #{id}
+	</update>
+	
+	<update id="updatePushTime" parameterType="MVersion">
+		UPDATE m_version				
+		SET push_datetime = #{push_datetime}				
+		WHERE				
+			id = #{id}		
+	</update>
+	
+	<!--update id="updateList" parameterType="java.util.List">
+		update m_history
+		set <include refid="updateListValues"/>
+		where id in
+		<foreach collection="list" item="dto" open="(" separator="," close=")">
+			#{dto.id}
+		</foreach>
+	</update-->
+	
+	<update id="updatePartial" parameterType="MHistory">
+		update m_history
+		set <include refid="updatePartialValues"/>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from m_history
+		where id = #{id}
+	</delete>
+	
+	<delete id="deleteList" parameterType="java.util.List">
+		delete from m_history
+		where id in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>

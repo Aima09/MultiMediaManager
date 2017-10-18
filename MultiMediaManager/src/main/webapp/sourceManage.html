@@ -1,0 +1,74 @@
+<meta charset='utf-8'/>
+<!-- page heading start-->
+<div class="page-heading">
+	<ul class="breadcrumb">
+		<li>
+			终端管理
+		</li>
+
+		<li> 终端列表 </li>
+		<li class="active"> 资源列表 </li>
+	</ul>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+	<div class="row">
+		<div class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading">
+					资源列表
+				</header>
+				<div class="panel-body">
+					<div class="adv-table">
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>名称</th>
+									<th>资源类型</th>													
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="gradeX" ng-repeat="x in res">
+									<td>{{$index+1}}</td>
+									<td>{{x.resName}}</td>
+									<td>{{x.type | fileType}}</td>
+									<td>
+										<a data-toggle="modal" data-target="#myModal" ng-click="del(x.resId)">删除</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="">
+							<pager page-count="pageCount" total-count="totalCount"
+								current-page="currentPage" on-page-change="onPageChange()"
+								first-text="首页" last-text="尾页" prev-text="上一页" next-text="下一页"></pager>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+	<div class="modal-dialog">
+	    <div class="modal-content">
+	        <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	            <h3 class="modal-title">删除</h3>
+	        </div>
+	        <div class="modal-body">
+	        	<input type="hidden" id="delResid">
+	            <p>你确定要删除该资源吗？</p>
+	        </div>
+	        <div class="modal-footer">
+	        	<button class="btn btn-primary" type="button" ng-click="delSubmit();">确定</button>
+	            <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+	            
+	        </div>
+	    </div>
+	</div>
+</div>
+<!--body wrapper end-->

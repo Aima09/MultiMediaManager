@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjb.mapper.MFileMapper">
+	<resultMap id="mFileResultMap" type="MFile">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="file_cate_id" property="file_cate_id" jdbcType="INTEGER" />
+		<result column="file_cate_name" property="file_cate_name" jdbcType="VARCHAR" />
+		<result column="file_sub_cate_id" property="file_sub_cate_id" jdbcType="INTEGER" />
+		<result column="file_sub_cate_name" property="file_sub_cate_name" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="des" property="des" jdbcType="VARCHAR" />
+		<result column="actor" property="actor" jdbcType="VARCHAR" />
+		<result column="company" property="company" jdbcType="VARCHAR" />
+		<result column="download_cnt" property="download_cnt" jdbcType="INTEGER" />
+		<result column="love_cnt" property="love_cnt" jdbcType="INTEGER" />
+		<result column="cnt" property="cnt" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="open_flg" property="open_flg" jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="suffix" property="suffix" jdbcType="VARCHAR" />
+		<result column="del_flg" property="del_flg" jdbcType="INTEGER" />
+		<result column="create_datetime" property="create_datetime" jdbcType="TIMESTAMP" />
+		<result column="create_user_id" property="create_user_id" jdbcType="INTEGER" />
+		<result column="update_datetime" property="update_datetime" jdbcType="TIMESTAMP" />
+		<result column="update_user_id" property="update_user_id" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="columns">
+		id, file_cate_id, file_sub_cate_id, name, des, actor, company, download_cnt, love_cnt, cnt, status, open_flg, type, suffix, del_flg, create_datetime, create_user_id, update_datetime, update_user_id
+	</sql>
+	
+	<sql id="insertValues">
+		null,
+		#{file_cate_id, jdbcType=INTEGER},
+		#{file_sub_cate_id, jdbcType=INTEGER},
+		#{name, jdbcType=VARCHAR},
+		#{des, jdbcType=VARCHAR},
+		#{actor, jdbcType=VARCHAR},
+		#{company, jdbcType=VARCHAR},
+		#{download_cnt, jdbcType=INTEGER},
+		#{love_cnt, jdbcType=INTEGER},
+		#{cnt, jdbcType=INTEGER},
+		#{status, jdbcType=INTEGER},
+		#{open_flg, jdbcType=INTEGER},
+		#{type, jdbcType=INTEGER},
+		#{suffix, jdbcType=VARCHAR},
+		#{del_flg, jdbcType=INTEGER},
+		#{create_datetime, jdbcType=TIMESTAMP},
+		#{create_user_id, jdbcType=INTEGER},
+		#{update_datetime, jdbcType=TIMESTAMP},
+		#{update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="insertListValues">
+		null,
+		#{dto.file_cate_id, jdbcType=INTEGER},
+		#{dto.file_sub_cate_id, jdbcType=INTEGER},
+		#{dto.name, jdbcType=VARCHAR},
+		#{dto.des, jdbcType=VARCHAR},
+		#{dto.actor, jdbcType=VARCHAR},
+		#{dto.company, jdbcType=VARCHAR},
+		#{dto.download_cnt, jdbcType=INTEGER},
+		#{dto.love_cnt, jdbcType=INTEGER},
+		#{dto.cnt, jdbcType=INTEGER},
+		#{dto.status, jdbcType=INTEGER},
+		#{dto.open_flg, jdbcType=INTEGER},
+		#{dto.type, jdbcType=INTEGER},
+		#{dto.suffix, jdbcType=VARCHAR},
+		#{dto.del_flg, jdbcType=INTEGER},
+		#{dto.create_datetime, jdbcType=TIMESTAMP},
+		#{dto.create_user_id, jdbcType=INTEGER},
+		#{dto.update_datetime, jdbcType=TIMESTAMP},
+		#{dto.update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updateValues">
+		id=#{id, jdbcType=INTEGER},
+		file_cate_id=#{file_cate_id, jdbcType=INTEGER},
+		file_sub_cate_id=#{file_sub_cate_id, jdbcType=INTEGER},
+		name=#{name, jdbcType=VARCHAR},
+		des=#{des, jdbcType=VARCHAR},
+		actor=#{actor, jdbcType=VARCHAR},
+		company=#{company, jdbcType=VARCHAR},
+		download_cnt=#{download_cnt, jdbcType=INTEGER},
+		love_cnt=#{love_cnt, jdbcType=INTEGER},
+		cnt=#{cnt, jdbcType=INTEGER},
+		status=#{status, jdbcType=INTEGER},
+		open_flg=#{open_flg, jdbcType=INTEGER},
+		type=#{type, jdbcType=INTEGER},
+		suffix=#{suffix, jdbcType=VARCHAR},
+		del_flg=#{del_flg, jdbcType=INTEGER},
+		create_datetime=#{create_datetime, jdbcType=TIMESTAMP},
+		create_user_id=#{create_user_id, jdbcType=INTEGER},
+		update_datetime=#{update_datetime, jdbcType=TIMESTAMP},
+		update_user_id=#{update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updateListValues">
+		id=#{dto.id, jdbcType=INTEGER},
+		file_cate_id=#{dto.file_cate_id, jdbcType=INTEGER},
+		file_sub_cate_id=#{dto.file_sub_cate_id, jdbcType=INTEGER},
+		name=#{dto.name, jdbcType=VARCHAR},
+		des=#{dto.des, jdbcType=VARCHAR},
+		actor=#{dto.actor, jdbcType=VARCHAR},
+		company=#{dto.company, jdbcType=VARCHAR},
+		download_cnt=#{dto.download_cnt, jdbcType=INTEGER},
+		love_cnt=#{dto.love_cnt, jdbcType=INTEGER},
+		cnt=#{dto.cnt, jdbcType=INTEGER},
+		status=#{dto.status, jdbcType=INTEGER},
+		open_flg=#{dto.open_flg, jdbcType=INTEGER},
+		type=#{dto.type, jdbcType=INTEGER},
+		suffix=#{dto.suffix, jdbcType=VARCHAR},
+		del_flg=#{dto.del_flg, jdbcType=INTEGER},
+		create_datetime=#{dto.create_datetime, jdbcType=TIMESTAMP},
+		create_user_id=#{dto.create_user_id, jdbcType=INTEGER},
+		update_datetime=#{dto.update_datetime, jdbcType=TIMESTAMP},
+		update_user_id=#{dto.update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updatePartialValues">
+		id=#{id, jdbcType=INTEGER}
+		<if test="file_cate_id != null">
+			<trim prefix=",">
+				file_cate_id=#{file_cate_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="file_sub_cate_id != null">
+			<trim prefix=",">
+				file_sub_cate_id=#{file_sub_cate_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="name != null">
+			<trim prefix=",">
+				name=#{name, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="des != null">
+			<trim prefix=",">
+				des=#{des, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="actor != null">
+			<trim prefix=",">
+				actor=#{actor, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="company != null">
+			<trim prefix=",">
+				company=#{company, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="download_cnt != null">
+			<trim prefix=",">
+				download_cnt=#{download_cnt, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="love_cnt != null">
+			<trim prefix=",">
+				love_cnt=#{love_cnt, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="cnt != null">
+			<trim prefix=",">
+				cnt=#{cnt, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="status != null">
+			<trim prefix=",">
+				status=#{status, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="open_flg != null">
+			<trim prefix=",">
+				open_flg=#{open_flg, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="type != null">
+			<trim prefix=",">
+				type=#{type, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="suffix != null">
+			<trim prefix=",">
+				suffix=#{suffix, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="del_flg != null">
+			<trim prefix=",">
+				del_flg=#{del_flg, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="create_datetime != null">
+			<trim prefix=",">
+				create_datetime=#{create_datetime, jdbcType=TIMESTAMP}
+			</trim>
+		</if>
+		<if test="create_user_id != null">
+			<trim prefix=",">
+				create_user_id=#{create_user_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="update_datetime != null">
+			<trim prefix=",">
+				update_datetime=#{update_datetime, jdbcType=TIMESTAMP}
+			</trim>
+		</if>
+		<if test="update_user_id != null">
+			<trim prefix=",">
+				update_user_id=#{update_user_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+	</sql>
+	
+	<sql id="whereCondition">
+		<if test="id != null">
+			and id = #{id, jdbcType=INTEGER}
+		</if>
+		<if test="file_cate_id != null">
+			and file_cate_id = #{file_cate_id, jdbcType=INTEGER}
+		</if>
+		<if test="file_sub_cate_id != null">
+			and file_sub_cate_id = #{file_sub_cate_id, jdbcType=INTEGER}
+		</if>
+		<if test="name != null">
+			<if test="name.length() > 0">
+				and instr(name, #{name, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="des != null">
+			<if test="des.length() > 0">
+				and instr(des, #{des, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="actor != null">
+			and actor = #{actor, jdbcType=VARCHAR}
+		</if>
+		<if test="company != null">
+			and company = #{company, jdbcType=VARCHAR}
+		</if>
+		<if test="download_cnt != null">
+			and download_cnt = #{download_cnt, jdbcType=INTEGER}
+		</if>
+		<if test="love_cnt != null">
+			and love_cnt = #{love_cnt, jdbcType=INTEGER}
+		</if>
+		<if test="cnt != null">
+			and cnt = #{cnt, jdbcType=INTEGER}
+		</if>
+		<if test="status != null">
+			and status = #{status, jdbcType=INTEGER}
+		</if>
+		<if test="open_flg != null">
+			and open_flg = #{open_flg, jdbcType=INTEGER}
+		</if>
+		<if test="type != null">
+			and type = #{type, jdbcType=INTEGER}
+		</if>
+		<if test="suffix != null">
+			and suffix = #{suffix, jdbcType=VARCHAR}
+		</if>
+		<if test="del_flg != null">
+			and del_flg = #{del_flg, jdbcType=INTEGER}
+		</if>
+		<if test="create_datetime != null">
+			and create_datetime = #{create_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="create_user_id != null">
+			and create_user_id = #{create_user_id, jdbcType=INTEGER}
+		</if>
+		<if test="update_datetime != null">
+			and update_datetime = #{update_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="update_user_id != null">
+			and update_user_id = #{update_user_id, jdbcType=INTEGER}
+		</if>
+	</sql>
+	
+	<sql id="whereCondition2">
+		<if test="id != null">
+			and mf.id = #{id, jdbcType=INTEGER}
+		</if>
+		<if test="file_cate_id != null">
+			and mf.file_cate_id = #{file_cate_id, jdbcType=INTEGER}
+		</if>
+		<if test="file_sub_cate_id != null">
+			and mf.file_sub_cate_id = #{file_sub_cate_id, jdbcType=INTEGER}
+		</if>
+		<if test="name != null">
+			<if test="name.length() > 0">
+				and instr(mf.name, #{name, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="des != null">
+			<if test="des.length() > 0">
+				and instr(mf.des, #{des, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="actor != null">
+			and mf.actor = #{actor, jdbcType=VARCHAR}
+		</if>
+		<if test="company != null">
+			and mf.company = #{company, jdbcType=VARCHAR}
+		</if>
+		<if test="download_cnt != null">
+			and mf.download_cnt = #{download_cnt, jdbcType=INTEGER}
+		</if>
+		<if test="love_cnt != null">
+			and mf.love_cnt = #{love_cnt, jdbcType=INTEGER}
+		</if>
+		<if test="cnt != null">
+			and mf.cnt = #{cnt, jdbcType=INTEGER}
+		</if>
+		<if test="status != null">
+			and mf.status = #{status, jdbcType=INTEGER}
+		</if>
+		<if test="open_flg != null">
+			and mf.open_flg = #{open_flg, jdbcType=INTEGER}
+		</if>
+		<if test="type != null">
+			and mf.type = #{type, jdbcType=INTEGER}
+		</if>
+		<if test="suffix != null">
+			and mf.suffix = #{suffix, jdbcType=VARCHAR}
+		</if>
+		<if test="del_flg != null">
+			and mf.del_flg = #{del_flg, jdbcType=INTEGER}
+		</if>
+		<if test="create_datetime != null">
+			and mf.create_datetime = #{create_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="create_user_id != null">
+			and mf.create_user_id = #{create_user_id, jdbcType=INTEGER}
+		</if>
+		<if test="update_datetime != null">
+			and mf.update_datetime = #{update_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="update_user_id != null">
+			and mf.update_user_id = #{update_user_id, jdbcType=INTEGER}
+		</if>
+	</sql>
+	
+	<sql id="whereCondition3">
+		<if test="id != null">
+			and mf.id = #{id, jdbcType=INTEGER}
+		</if>
+		<if test="file_cate_id != null">
+			and mf.file_cate_id = #{file_cate_id, jdbcType=INTEGER}
+		</if>
+		<if test="file_sub_cate_id != null">
+			and mf.file_sub_cate_id = #{file_sub_cate_id, jdbcType=INTEGER}
+		</if>
+		<if test="name != null">
+			<if test="name.length() > 0">
+				and instr(mf.name, #{name, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="des != null">
+			<if test="des.length() > 0">
+				and instr(mf.des, #{des, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="actor != null">
+			and mf.actor = #{actor, jdbcType=VARCHAR}
+		</if>
+		<if test="company != null">
+			and mf.company = #{company, jdbcType=VARCHAR}
+		</if>
+		<if test="download_cnt != null">
+			and mf.download_cnt = #{download_cnt, jdbcType=INTEGER}
+		</if>
+		<if test="love_cnt != null">
+			and mf.love_cnt = #{love_cnt, jdbcType=INTEGER}
+		</if>
+		<if test="cnt != null">
+			and mf.cnt = #{cnt, jdbcType=INTEGER}
+		</if>
+		<if test="status != null">
+			and mf.status = #{status, jdbcType=INTEGER}
+		</if>
+		<if test="open_flg != null">
+			and mf.open_flg = #{open_flg, jdbcType=INTEGER}
+		</if>
+		<if test="type != null">
+			and mf.type = #{type, jdbcType=INTEGER}
+		</if>
+		<if test="suffix != null">
+			and mf.suffix = #{suffix, jdbcType=VARCHAR}
+		</if>
+		<if test="del_flg != null">
+			and mf.del_flg = #{del_flg, jdbcType=INTEGER}
+		</if>
+		<if test="create_datetime != null">
+			and mf.create_datetime = #{create_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="update_datetime != null">
+			and mf.update_datetime = #{update_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="update_user_id != null">
+			and mf.update_user_id = #{update_user_id, jdbcType=INTEGER}
+		</if>
+	</sql>
+	
+	<select id="count" resultType="int">
+		select count(id)
+		from m_file
+	</select>
+	
+	<select id="countByDto" resultType="int" parameterType="MFile">
+		select count(id)
+		from m_file
+		where 1=1 <include refid="whereCondition"/>
+	</select>
+	
+	<select id="findById" resultMap="mFileResultMap" parameterType="int">
+		SELECT
+			mf.id,
+			mf.file_cate_id,
+			mf.file_sub_cate_id,
+			mf.name,
+			mf.des,
+			mf.actor,
+			mf.company,
+			mf.download_cnt,
+			mf.love_cnt,
+			mf.cnt,
+			mf.status,
+			mf.open_flg,
+			mf.type,
+			mf.suffix,
+			mf.create_datetime,
+			mf.create_user_id,
+			mf.update_datetime,
+			mf.update_user_id,
+			mfc.name as file_cate_name,
+			mfsc.name as file_sub_cate_name
+		FROM
+			m_file mf
+		LEFT JOIN m_file_cate mfc ON mfc.id = mf.file_cate_id
+		LEFT JOIN m_file_sub_cate mfsc ON mfsc.id = mf.file_sub_cate_id
+		WHERE mf.id = #{id}
+	</select>
+	
+	<select id="findAll" resultMap="mFileResultMap">
+		SELECT
+			mf.id,
+			mf.file_cate_id,
+			mf.file_sub_cate_id,
+			mf.name,
+			mf.des,
+			mf.actor,
+			mf.company,
+			mf.download_cnt,
+			mf.love_cnt,
+			mf.cnt,
+			mf.status,
+			mf.open_flg,
+			mf.type,
+			mf.suffix,
+			mf.create_datetime,
+			mf.create_user_id,
+			mf.update_datetime,
+			mf.update_user_id,
+			mfc.name as file_cate_name,
+			mfsc.name as file_sub_cate_name
+		FROM
+			m_file mf
+		LEFT JOIN m_file_cate mfc ON mfc.id = mf.file_cate_id
+		LEFT JOIN m_file_sub_cate mfsc ON mfsc.id = mf.file_sub_cate_id
+		ORDER BY mf.update_datetime DESC
+	</select>
+	
+	<select id="findByDto" resultMap="mFileResultMap" parameterType="MFile">
+		SELECT
+			mf.id,
+			mf.file_cate_id,
+			mf.file_sub_cate_id,
+			mf.name,
+			mf.des,
+			mf.actor,
+			mf.company,
+			mf.download_cnt,
+			mf.love_cnt,
+			mf.cnt,
+			mf.status,
+			mf.open_flg,
+			mf.type,
+			mf.suffix,
+			mf.create_datetime,
+			mf.create_user_id,
+			mf.update_datetime,
+			mf.update_user_id,
+			mfc.name as file_cate_name,
+			mfsc.name as file_sub_cate_name
+		FROM
+			m_file mf
+		LEFT JOIN m_file_cate mfc ON mfc.id = mf.file_cate_id
+		LEFT JOIN m_file_sub_cate mfsc ON mfsc.id = mf.file_sub_cate_id
+		where 1=1 <include refid="whereCondition2"/>
+		ORDER BY mf.update_datetime DESC
+	</select>
+	
+	<select id="machinefindByDto" resultMap="mFileResultMap" parameterType="MFile">
+		SELECT
+			mf.id,
+			mf.file_cate_id,
+			mf.file_sub_cate_id,
+			mf.name,
+			mf.des,
+			mf.actor,
+			mf.company,
+			mf.download_cnt,
+			mf.love_cnt,
+			mf.cnt,
+			mf.status,
+			mf.open_flg,
+			mf.type,
+			mf.suffix,
+			mf.create_datetime,
+			mf.create_user_id,
+			mf.update_datetime,
+			mf.update_user_id,
+			mfc.name as file_cate_name,
+			mfsc.name as file_sub_cate_name
+		FROM
+			m_file mf
+		LEFT JOIN m_file_cate mfc ON mfc.id = mf.file_cate_id
+		LEFT JOIN m_file_sub_cate mfsc ON mfsc.id = mf.file_sub_cate_id
+		where (mf.open_flg = 1 OR mf.create_user_id = #{create_user_id}) <include refid="whereCondition3"/>
+		ORDER BY mf.update_datetime DESC
+	</select>
+	
+	<insert id="insert" parameterType="MFile">
+		insert into m_file
+		(<include refid="columns"/>)
+		values(<include refid="insertValues"/>);
+		<selectKey resultType="int" keyProperty="id">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertList" parameterType="java.util.List">
+		insert into m_file
+		(<include refid="columns"/>)
+		values
+			<foreach collection="list" item="dto" index="index" separator=",">
+				(<include refid="insertListValues"/>)
+			</foreach>
+	</insert>
+	
+	<update id="update" parameterType="MFile">
+		update m_file
+		set <include refid="updateValues"/>
+		where id = #{id}
+	</update>
+	
+	<!--update id="updateList" parameterType="java.util.List">
+		update m_file
+		set <include refid="updateListValues"/>
+		where id in
+		<foreach collection="list" item="dto" open="(" separator="," close=")">
+			#{dto.id}
+		</foreach>
+	</update-->
+	
+	<update id="updatePartial" parameterType="MFile">
+		update m_file
+		set <include refid="updatePartialValues"/>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from m_file
+		where id = #{id}
+	</delete>
+	
+	<delete id="deleteList" parameterType="java.util.List">
+		delete from m_file
+		where id in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+	
+	<update id="browseAdd" parameterType="int">
+		update m_file
+		set cnt = cnt + 1
+		where id = #{id}
+	</update>
+	
+	<update id="downloadAdd" parameterType="int">
+		update m_file
+		set download_cnt = download_cnt + 1
+		where id = #{id}
+	</update>
+	
+	<update id="loveAdd" parameterType="int">
+		update m_file
+		set love_cnt = love_cnt + 1
+		where id = #{id}
+	</update>
+	
+	<update id="filePass" parameterType="int">
+		update m_file
+		set status = 1
+		where id = #{id}
+	</update>
+	
+	<update id="fileRefuse" parameterType="int">
+		update m_file
+		set status = 2
+		where id = #{id}
+	</update>
+	
+	<update id="reject7day" parameterType="MFile">
+		update m_file
+		set status = 2
+		where TIMESTAMPDIFF(SECOND,update_datetime,#{update_datetime}) > 7 * 24 * 3600
+	</update>
+	
+	<update id="updateFileCate" parameterType="MFile">
+		update m_file
+		set file_cate_id = #{file_cate_id}
+		where del_flg = 0 and file_sub_cate_id = #{file_sub_cate_id}
+	</update>
+</mapper>

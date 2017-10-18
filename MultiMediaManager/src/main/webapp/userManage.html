@@ -1,0 +1,99 @@
+<meta charset="UTF-8">
+<!-- page heading start-->
+<div class="page-heading">
+	<ul class="breadcrumb">
+		<li>
+			用户管理
+		</li>
+
+		<li class="active"> 用户列表 </li>
+	</ul>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+	<div class="row">
+		<div class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading">
+					用户列表
+				</header>
+
+				<div class="panel-body">
+					<div class="adv-table">
+						<div class="newposition">
+							<div class="pull-left mysearch">
+								<input type="text" ng-model="search" ng-change="keywordchange()" class="form-control" placeholder="关键字搜索" />
+							</div>
+							<div class="btn-group pull-right">
+								<a id="editable-sample_new" class="btn btn-primary newBtn" href="#/addUser">
+                       			 添加用户 <i class="fa fa-plus"></i>
+                    			</a>
+							</div>
+
+						</div>
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>账号</th>
+									<th>姓名</th>	
+									<th>角色</th>
+									<th>手机号</th>	
+									<th>状态</th>	
+									<th>操作</th>
+
+								</tr>
+							</thead>
+							
+							<tbody ng-repeat="u in lists ">
+							
+								<tr class="gradeX">
+									<td>{{(currentPage-1) * 10 + ($index+1)}}</td>
+									<td>{{u.account}}</td>
+									<td>{{u.name}}</td>
+								    <td>{{u.role | roleId}}</td>
+								    <td>{{u.phone}}</td>
+								    <td>{{u.status | onlineStatus}}</td>
+									<td>
+										<a href="#/renewUser?updateId={{u.id}}">更新</a>
+										<a data-toggle="modal" data-target="#myModal" ng-click="deleteUser1(u.id)">删除</a>
+									</td>
+								</tr>				
+
+							</tbody>
+							<input type="hidden" ng-model="deleteId"/>
+
+						</table>
+						<div class="">
+							<pager page-count="pageCount" total-count="totalCount"
+								current-page="currentPage" on-page-change="onPageChange()"
+								first-text="首页" last-text="尾页" prev-text="上一页" next-text="下一页"></pager>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+
+</div>
+<!--body wrapper end-->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">删除</h3>
+            </div>
+            <div class="modal-body">
+                <p>你确定要删除该用户吗？</p>
+                
+            </div>
+            <div class="modal-footer">
+            	<button class="btn btn-primary" type="button" ng-click="deleteUser2(deleteId)">确定</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+                
+            </div>
+        </div>
+    </div>
+</div>

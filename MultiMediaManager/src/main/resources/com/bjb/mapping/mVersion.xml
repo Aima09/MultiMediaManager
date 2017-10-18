@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjb.mapper.MVersionMapper">
+	<resultMap id="mVersionResultMap" type="MVersion">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="des" property="des" jdbcType="VARCHAR" />
+		<result column="push_datetime" property="push_datetime" jdbcType="TIMESTAMP" />
+		<result column="del_flg" property="del_flg" jdbcType="INTEGER" />
+		<result column="create_datetime" property="create_datetime" jdbcType="TIMESTAMP" />
+		<result column="create_user_id" property="create_user_id" jdbcType="INTEGER" />
+		<result column="update_datetime" property="update_datetime" jdbcType="TIMESTAMP" />
+		<result column="update_user_id" property="update_user_id" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="columns">
+		id, name, des, push_datetime, del_flg, create_datetime, create_user_id, update_datetime, update_user_id
+	</sql>
+	
+	<sql id="insertValues">
+		null,
+		#{name, jdbcType=VARCHAR},
+		#{des, jdbcType=VARCHAR},
+		#{push_datetime, jdbcType=TIMESTAMP},
+		#{del_flg, jdbcType=INTEGER},
+		#{create_datetime, jdbcType=TIMESTAMP},
+		#{create_user_id, jdbcType=INTEGER},
+		#{update_datetime, jdbcType=TIMESTAMP},
+		#{update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="insertListValues">
+		null,
+		#{dto.name, jdbcType=VARCHAR},
+		#{dto.des, jdbcType=VARCHAR},
+		#{dto.push_datetime, jdbcType=TIMESTAMP},
+		#{dto.del_flg, jdbcType=INTEGER},
+		#{dto.create_datetime, jdbcType=TIMESTAMP},
+		#{dto.create_user_id, jdbcType=INTEGER},
+		#{dto.update_datetime, jdbcType=TIMESTAMP},
+		#{dto.update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updateValues">
+		id=#{id, jdbcType=INTEGER},
+		name=#{name, jdbcType=VARCHAR},
+		des=#{des, jdbcType=VARCHAR},
+		push_datetime=#{push_datetime, jdbcType=TIMESTAMP},
+		del_flg=#{del_flg, jdbcType=INTEGER},
+		create_datetime=#{create_datetime, jdbcType=TIMESTAMP},
+		create_user_id=#{create_user_id, jdbcType=INTEGER},
+		update_datetime=#{update_datetime, jdbcType=TIMESTAMP},
+		update_user_id=#{update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updateListValues">
+		id=#{dto.id, jdbcType=INTEGER},
+		name=#{dto.name, jdbcType=VARCHAR},
+		des=#{dto.des, jdbcType=VARCHAR},
+		push_datetime=#{dto.push_datetime, jdbcType=TIMESTAMP},
+		del_flg=#{dto.del_flg, jdbcType=INTEGER},
+		create_datetime=#{dto.create_datetime, jdbcType=TIMESTAMP},
+		create_user_id=#{dto.create_user_id, jdbcType=INTEGER},
+		update_datetime=#{dto.update_datetime, jdbcType=TIMESTAMP},
+		update_user_id=#{dto.update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updatePartialValues">
+		id=#{id, jdbcType=INTEGER}
+		<if test="name != null">
+			<trim prefix=",">
+				name=#{name, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="des != null">
+			<trim prefix=",">
+				des=#{des, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="push_datetime != null">
+			<trim prefix=",">
+				push_datetime=#{push_datetime, jdbcType=TIMESTAMP}
+			</trim>
+		</if>
+		<if test="del_flg != null">
+			<trim prefix=",">
+				del_flg=#{del_flg, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="create_datetime != null">
+			<trim prefix=",">
+				create_datetime=#{create_datetime, jdbcType=TIMESTAMP}
+			</trim>
+		</if>
+		<if test="create_user_id != null">
+			<trim prefix=",">
+				create_user_id=#{create_user_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="update_datetime != null">
+			<trim prefix=",">
+				update_datetime=#{update_datetime, jdbcType=TIMESTAMP}
+			</trim>
+		</if>
+		<if test="update_user_id != null">
+			<trim prefix=",">
+				update_user_id=#{update_user_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+	</sql>
+	
+	<sql id="whereCondition">
+		<if test="id != null">
+			and id = #{id, jdbcType=INTEGER}
+		</if>
+		<if test="name != null">
+			<if test="name.length() > 0">
+				and instr(name, #{name, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="des != null">
+			<if test="des.length() > 0">
+				and instr(des, #{des, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="push_datetime != null">
+			and push_datetime = #{push_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="del_flg != null">
+			and del_flg = #{del_flg, jdbcType=INTEGER}
+		</if>
+		<if test="create_datetime != null">
+			and create_datetime = #{create_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="create_user_id != null">
+			and create_user_id = #{create_user_id, jdbcType=INTEGER}
+		</if>
+		<if test="update_datetime != null">
+			and update_datetime = #{update_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="update_user_id != null">
+			and update_user_id = #{update_user_id, jdbcType=INTEGER}
+		</if>
+	</sql>
+	
+	<select id="count" resultType="int">
+		select count(id)
+		from m_version
+	</select>
+	
+	<select id="countByDto" resultType="int" parameterType="MVersion">
+		select count(id)
+		from m_version
+		where 1=1 <include refid="whereCondition"/>
+	</select>
+	
+	<select id="findById" resultMap="mVersionResultMap" parameterType="int">
+		select <include refid="columns"/>
+		from m_version
+		where id = #{id}
+	</select>
+	
+	<select id="findAll" resultMap="mVersionResultMap">
+		select <include refid="columns"/>
+		from m_version
+	</select>
+	
+	<select id="findByDto" resultMap="mVersionResultMap" parameterType="MVersion">
+		select <include refid="columns"/>
+		from m_version
+		where 1=1 <include refid="whereCondition"/>
+		order by id desc
+	</select>
+	
+	<insert id="insert" parameterType="MVersion">
+		insert into m_version
+		(<include refid="columns"/>)
+		values(<include refid="insertValues"/>);
+		<selectKey resultType="int" keyProperty="id">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertList" parameterType="java.util.List">
+		insert into m_version
+		(<include refid="columns"/>)
+		values
+			<foreach collection="list" item="dto" index="index" separator=",">
+				(<include refid="insertListValues"/>)
+			</foreach>
+	</insert>
+	
+	<update id="update" parameterType="MVersion">
+		update m_version
+		set <include refid="updateValues"/>
+		where id = #{id}
+	</update>
+	
+	<!--update id="updateList" parameterType="java.util.List">
+		update m_version
+		set <include refid="updateListValues"/>
+		where id in
+		<foreach collection="list" item="dto" open="(" separator="," close=")">
+			#{dto.id}
+		</foreach>
+	</update-->
+	
+	<update id="updatePartial" parameterType="MVersion">
+		update m_version
+		set <include refid="updatePartialValues"/>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from m_version
+		where id = #{id}
+	</delete>
+	
+	<delete id="deleteList" parameterType="java.util.List">
+		delete from m_version
+		where id in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>

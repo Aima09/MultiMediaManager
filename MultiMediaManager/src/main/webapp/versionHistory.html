@@ -1,0 +1,61 @@
+<meta charset="UTF-8">
+<!-- page heading start-->
+<div class="page-heading">
+	<ul class="breadcrumb">
+		<li>版本管理</li>
+
+		<li class="active">推送历史</li>
+	</ul>
+</div>
+<!-- page heading end-->
+
+<!--body wrapper start-->
+<div class="wrapper">
+	<div class="row">
+		<div class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading"> 推送历史 </header>
+
+				<div class="panel-body">
+					<div class="adv-table">
+
+						<table class="table table-bordered table-striped" style="table-layout:fixed">
+							<thead>
+								<tr>
+									<th width="10%">序号</th>
+									<th width="20%">版本名</th>
+									<th width="70%">版本描述</th>
+
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in list" class="gradeX">
+									<td>{{(currentPage-1)*10+($index+1)}}</td>
+									<td>{{x.version_name}}</td>
+									<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{x.des}}</td>
+								</tr>
+							</tbody>
+
+						</table>
+						<div class="">
+							<pager page-count="pageCount" total-count="totalCount"
+								current-page="currentPage" on-page-change="onPageChange()"
+								first-text="首页" last-text="尾页" prev-text="上一页" next-text="下一页"></pager>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".menu-list li").removeClass("nav-active");
+		$(".banner li").removeClass("active");
+		$("#version_p").addClass("nav-active");
+		$("#version").removeClass("active");
+		$("#history").addClass("active");
+	});
+</script>

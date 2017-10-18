@@ -1,0 +1,90 @@
+/**公用页码-start**/
+
+
+.tcdPageCode i{
+	font-size: 24px;
+	
+}
+a:hover {
+	text-decoration: none;
+}
+.shenglue{
+	font-size: 12px;
+}
+.tcdPageCode {
+	padding: 15px 20px;
+	text-align: left;
+	color: #999;
+	text-align: center;
+	font-size: 14px;
+	padding-bottom: 44px;	
+}
+
+.tcdPageCode a {
+	display: inline-block;
+	color: #999;
+	display: inline-block;
+	height: 27px;
+	line-height: 25px;
+	padding: 0 8px;
+	margin: 0 6px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+	vertical-align: middle;
+	/*background-color: #e5e5e5;*/
+	border: 1px solid #cccccc;
+}
+
+.tcdPageCode a:hover {
+	text-decoration: none;
+}
+
+.tcdPageCode span.current {
+	display: inline-block;
+	height: 27px;
+	line-height: 25px;
+	padding: 0 8px;
+	margin: 0 7px;
+	color: #fff;
+	background-color: #1ad5dc;
+	border: 1px solid #1ad5dc;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+	vertical-align: middle;
+}
+.nextPage i,.prevPage i{
+	color: #999;
+}
+.prevPage i{
+	margin-right: 1.5px;
+	margin-left: -1.5px;
+}
+.nextPage i{
+	margin-right: -1.5px;
+	margin-left: 1.5px;
+}
+.tcdPageCode span.disabled {
+	display: inline-block;
+	height: 27px;
+	line-height: 25px;
+	padding: 0 8px;
+	margin: 0 7px;
+	color: #bfbfbf;
+	/*background: #e5e5e5;	*/
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+	vertical-align: middle;
+	border: 1px solid #e1e1e1;
+}
+.disabled .fa-caret-left{
+	margin-right: 1.5px;
+	margin-left: -1.5px;
+}
+.disabled .fa-caret-right{
+	margin-right: -1.5px;
+	margin-left: 1.5px;
+}
+/**公用页码-end**/

@@ -1,0 +1,102 @@
+<meta charset='utf-8'/>
+<div class="page-heading">
+	<ul class="breadcrumb">
+		<li>
+			应用管理
+		</li>
+		<li>
+			应用列表
+		</li>
+		<li class="active"> 新增应用 </li>
+	</ul>
+</div>
+<!--body wrapper start-->
+<div class="wrapper">
+
+	<!-- 遮罩层DIV -->  
+    <div id="overlay" style="position: absolute; top: 0px; left: 0px;z-index: 10001;
+    dispaly: none; filter:alpha(opacity=60); background-color: #777; opacity: 0.5; -moz-opacity: 0.5;"></div>  
+    <!-- Loading提示 DIV -->  
+    <div id="loadingTip" style="z-index: 10002; position: fixed; display: none;">  
+        <img src="images/timg.gif" />  
+    </div>
+    
+	<div class="row">
+		<div class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading">
+					新增应用
+				</header>
+				<div class="panel-body">
+					<form class="form-horizontal adminex-form" enctype="multipart/form-data" name="appForm">
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>名称</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="appname" ng-model="appname" required>
+								<p class="help-block color-red" ng-show="appForm.appname.$error.required">名称不能为空！</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>封面</label>
+							<div class="col-md-10">
+								<div class="fileupload fileupload-new" data-provides="fileupload">
+									<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+										<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+									</div>
+									<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+									<div>
+										<span class="btn btn-default btn-file">
+                                               <span class="fileupload-new"><i class="fa fa-paper-clip"></i> 选择图片</span>
+										<span class="fileupload-exists"><i class="fa fa-undo"></i> 重新选择</span>
+										<input type="file" name="picFile" class="default"  ngf-select ng-model="picFile" required/>
+										</span>
+										<a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> 删除</a>
+										<p class="help-block color-red" ng-show="appForm.picFile.$error.required">封面不能为空！</p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>应用</label>
+							<div class="controls col-md-10">
+								<div class="fileupload fileupload-new" data-provides="fileupload">
+									<span class="btn btn-default btn-file">
+                                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i> 选择文件</span>
+									<span class="fileupload-exists"><i class="fa fa-undo"></i> 重新选择</span>
+									<input type="file" name="apkFile" class="default" ngf-select ng-model="apkFile" required/>
+									</span>
+									<span class="fileupload-preview" style="margin-left:5px;"></span>
+									<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none; margin-left:5px;"></a>
+									<p class="help-block color-red" ng-show="appForm.apkFile.$error.required">应用不能为空！</p>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>大小</label>
+							<div class="col-sm-10">
+								<input type="number" onkeydown="Numbers(event)" class="form-control" name="appsize" ng-model="appsize" required>
+								<p class="help-block color-red" ng-show="appForm.appsize.$error.required">大小不能为空！</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 col-sm-2 control-label"><span class="necessary">*</span>描述</label>
+							<div class="col-sm-10">
+								<textarea rows="6" class="form-control" name="appdes" ng-model="appdes" required></textarea>
+								<p class="help-block color-red" ng-show="appForm.appdes.$error.required">描述不能为空！</p>
+							</div>
+						</div>
+
+						<div class="pull-right">
+							<a ng-click="addApp()" class="btn btn-primary" type="submit">保存</a>
+							<a class="btn btn-default" type="button" href="#/appManage">取消</a>
+						</div>
+
+					</form>
+				</div>
+			</section>
+		</div>
+	</div>
+
+</div>
+<!--body wrapper end-->

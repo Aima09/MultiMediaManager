@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MultiMediaManager" ng-controller="indexCtrl">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="ThemeBucket">
+	<link rel="shortcut icon" href="#" type="image/png">
+	
+	<title>多媒体一体机后台</title>
+	
+	<!--dynamic table-->
+	<link href="js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+	<link href="js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+	<link rel="stylesheet" href="js/data-tables/DT_bootstrap.css" />
+	
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/style-responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/zwei.css" />
+	<link rel="stylesheet" href="css/stylenew.css" />
+	
+	<!--ios7-->
+	<link rel="stylesheet" type="text/css"
+		href="js/ios-switch/switchery.css" />
+	<!--icheck-->
+	<link href="js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+	<link href="js/iCheck/skins/minimal/red.css" rel="stylesheet">
+	<link href="js/iCheck/skins/minimal/green.css" rel="stylesheet">
+	<link href="js/iCheck/skins/minimal/blue.css" rel="stylesheet">
+	<link href="js/iCheck/skins/minimal/yellow.css" rel="stylesheet">
+	<link href="js/iCheck/skins/minimal/purple.css" rel="stylesheet">
+	
+	<link href="js/iCheck/skins/square/square.css" rel="stylesheet">
+	<link href="js/iCheck/skins/square/red.css" rel="stylesheet">
+	<link href="js/iCheck/skins/square/green.css" rel="stylesheet">
+	<link href="js/iCheck/skins/square/blue.css" rel="stylesheet">
+	<link href="js/iCheck/skins/square/yellow.css" rel="stylesheet">
+	<link href="js/iCheck/skins/square/purple.css" rel="stylesheet">
+	
+	<link href="js/iCheck/skins/flat/grey.css" rel="stylesheet">
+	<link href="js/iCheck/skins/flat/red.css" rel="stylesheet">
+	<link href="js/iCheck/skins/flat/green.css" rel="stylesheet">
+	<link href="js/iCheck/skins/flat/blue.css" rel="stylesheet">
+	<link href="js/iCheck/skins/flat/yellow.css" rel="stylesheet">
+	<link href="js/iCheck/skins/flat/purple.css" rel="stylesheet">
+	<link href="css/bootstrap-fileupload.min.css" rel="stylesheet" />
+	<link href="js/notify/dm-notif-style.css" rel="stylesheet" />
+	<link href="css/page.css" rel="stylesheet" />
+	<style type="text/css">
+		.numbertotal {
+			float: left;
+			margin-right: 20px;
+			margin-top: 27px;
+			margin-left: 10px;
+		}
+	</style>
+</head>
+<body class="sticky-header">
+	<div id="dm-notif"></div>
+	<section>
+		<!-- left side start-->
+		<div class="left-side sticky-left-side">
+
+			<!--logo and iconic logo start-->
+			<div class="logo">
+				<a href="index.html"><img src="images/logo.png" alt=""></a>
+			</div>
+
+			<div class="logo-icon text-center">
+				<a href="index.html"><img src="images/logo_icon.png" alt=""></a>
+			</div>
+			<!--logo and iconic logo end-->
+
+			<div class="left-side-inner">
+
+				<!-- visible to small devices only -->
+				<div class="visible-xs hidden-sm hidden-md hidden-lg">
+					<div class="media logged-user">
+						<img alt="" src="images/photos/user-avatar.png"
+							class="media-object">
+						<div class="media-body">
+							<h4>
+								<a href="#">John Doe</a>
+							</h4>
+							<span>"Hello There..."</span>
+						</div>
+					</div>
+
+					<h5 class="left-nav-title">Account Information</h5>
+					<ul class="nav nav-pills nav-stacked custom-nav">
+						<li><a href="#"><i class="fa fa-user"></i> <span>Profile</span></a>
+						</li>
+						<li><a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a>
+						</li>
+						<li><a href="#"><i class="fa fa-sign-out"></i> <span>Sign
+									Out</span></a></li>
+					</ul>
+				</div>
+
+				<!--sidebar nav start-->
+				<ul class="nav nav-pills nav-stacked custom-nav">
+
+					<li class="menu-list" id="app_p"><a href=""><i
+							class="fa fa-tasks"></i> <span>应用管理</span></a>
+						<ul class="sub-menu-list">
+							<li class="banner" id="app"><a href="#/appManage"> 应用列表</a></li>
+						</ul></li>
+					<li class="menu-list" id="terminal_p"><a href=""><i class="fa fa-laptop"></i>
+							<span>终端管理</span></a>
+						<ul class="sub-menu-list">
+							<li class="banner" id="terminal"><a href="#/terminalManage"> 终端列表</a></li>
+
+						</ul></li>
+					<li class="menu-list" id="user_p"><a href=""><i class="fa fa-user"></i>
+							<span>用户管理</span></a>
+						<ul class="sub-menu-list">
+							<li class="banner" id="user"><a href="#/userManage"> 用户列表</a></li>
+
+						</ul></li>
+
+					<li class="menu-list" id="version_p"><a href=""><i class="fa fa-cogs"></i>
+							<span>版本管理</span></a>
+						<ul class="sub-menu-list">
+							<li class="banner" id="version"><a href="#/versionManage"> 版本列表</a></li>
+							<li class="banner" id="history"><a href="#/versionHistory"> 推送历史</a></li>
+
+						</ul></li>
+					<li class="menu-list" id="lesson_p"><a href=""><i class="fa fa-clipboard"></i>
+							<span>课件管理</span></a>
+						<ul class="sub-menu-list">
+							<li class="banner" id="lesson"><a href="#/lessonManage"> 课件管理</a></li>
+							<li class="banner" id="courseclassify"><a href="#/courseclassifyManage"> 课件大分类管理</a></li>
+							<li class="banner" id="coursesubclassify"><a href="#/coursesubclassifyManage"> 课件子分类管理</a></li>
+							<li class="banner" id="comment"><a href="#/commentManage"> 评论管理</a></li>
+
+						</ul></li>
+					<li class="menu-list" id="version_p"><a href=""><i class="fa fa-link"></i>
+							<span>平台对接</span></a>
+						<ul class="sub-menu-list">
+							<li class="banner"><a href="http://203.207.220.5/" target="_blank"> 支撑平台</a></li>
+
+						</ul></li>
+				</ul>
+				<!--sidebar nav end-->
+			</div>
+		</div>
+		<!-- left side end-->
+
+		<!-- main content start-->
+		<div class="main-content">
+
+			<!-- header section start-->
+			<div class="header-section">
+
+				<!--toggle button start-->
+				<a id="pagetop" class="toggle-btn"><i class="fa fa-bars"></i></a>
+				<!--toggle button end-->
+
+				<!--notification menu start -->
+				<div class="menu-right">
+					<ul class="notification-menu">
+
+
+
+						<li><a class="btn btn-default dropdown-toggle"
+							data-toggle="dropdown"> {{username}} <span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+
+								<li><a href="login.html" ng-click="logOut()"><i class="fa fa-sign-out"></i>
+										Log Out</a></li>
+							</ul></li>
+
+					</ul>
+				</div>
+				<!--notification menu end -->
+
+			</div>
+			<!-- header section end-->
+			<div ui-view=""></div>
+		</div>
+		<!-- main content end-->
+	</section>
+
+	<!-- Placed js at the end of the document so the pages load faster -->
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+	<script src="js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/modernizr.min.js"></script>
+	<script src="js/jquery.nicescroll.js"></script>
+
+	<!--dynamic table-->
+	<script type="text/javascript" language="javascript"
+		src="js/advanced-datatable/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
+	<!--dynamic table initialization -->
+	<script src="js/dynamic_table_init.js"></script>
+
+	<!--common scripts for all pages-->
+	<script src="js/scripts.js"></script>
+	<!--ios7-->
+	<script src="js/ios-switch/switchery.js"></script>
+	<script src="js/ios-switch/ios-init.js"></script>
+	<!--icheck -->
+	<script src="js/iCheck/jquery.icheck.js"></script>
+	<script src="js/icheck-init.js"></script>
+	<!--multi-select-->
+	<script type="text/javascript"
+		src="js/jquery-multi-select/js/jquery.multi-select.js"></script>
+	<script type="text/javascript"
+		src="js/jquery-multi-select/js/jquery.quicksearch.js"></script>
+	<script src="js/multi-select-init.js"></script>
+	<!--spinner-->
+	<script type="text/javascript" src="js/fuelux/js/spinner.min.js"></script>
+	<script src="js/spinner-init.js"></script>
+	<!--file upload-->
+	<script type="text/javascript" src="js/bootstrap-fileupload.min.js"></script>
+	<!--tags input-->
+	<script src="js/jquery-tags-input/jquery.tagsinput.js"></script>
+	<script src="js/tagsinput-init.js"></script>
+	<script type="text/javascript" src="js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/angular-ui-router.js"></script>
+	<script type="text/javascript" src="js/angular.pagination.js"></script>
+	<script type="text/javascript" src="js/ng-file-upload.js"></script>
+	<script type="text/javascript" src="js/ng-file-upload-shim.js"></script>
+	<script type="text/javascript" src="js/notify/dm_notify.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/app_controller.js"></script>
+	<script type="text/javascript" src="js/terminal_controller.js"></script>
+	<script type="text/javascript" src="js/user_controller.js"></script>
+	<script type="text/javascript" src="js/version_controller.js"></script>
+	<script type="text/javascript" src="js/courseclassify_controller.js"></script>
+	<script type="text/javascript" src="js/coursesubclassify_controller.js"></script>
+	<script type="text/javascript" src="js/lesson_controller.js"></script>
+	<script type="text/javascript" src="js/comment_controller.js"></script>
+	<script type="text/javascript" src="js/index_controller.js"></script>
+</body>
+
+</html>

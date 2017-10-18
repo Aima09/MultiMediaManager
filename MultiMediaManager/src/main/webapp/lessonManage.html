@@ -1,0 +1,215 @@
+<meta charset="utf-8">
+<!-- page heading start-->
+<div class="page-heading">
+	<ul class="breadcrumb">
+		<li>
+			课件管理
+		</li>
+
+		<li class="active"> 课件列表 </li>
+	</ul>
+</div>
+<!-- page heading end-->
+
+<!--body wrapper start-->
+<div class="wrapper">
+	<div class="row">
+		<div class="col-sm-12">
+			<section class="panel">
+				<header class="panel-heading">
+					课件列表
+
+				</header>
+				
+				<div class="panel-body">
+					<div class="adv-table">
+						<div class="newposition">
+							<div class="pull-left clearfix">
+								<label class="pull-left mylabel">大分类：</label>
+								<div class="pull-left marginR1">
+
+									<select class="form-control" ng-model="cateValue" ng-change="catefilt()">
+										<option value="0">全部</option>
+										<option ng-repeat="x in catelist" value="{{x.id}}">{{x.name}}</option>
+									</select>
+
+								</div>
+								</div>
+								<div class="pull-left clearfix">
+								<label class="pull-left mylabel">子分类：</label>
+								<div class="pull-left marginR1">
+
+									<select class="form-control" ng-model="subcateValue" ng-change="filt()">
+										<option value="0">全部</option>
+										<option ng-repeat="x in subcatelist" value="{{x.id}}">{{x.name}}</option>
+									</select>
+
+								</div>
+								</div>
+								<div class="pull-left clearfix">
+								<label class="pull-left mylabel">类型：</label>
+								<div class="pull-left marginR1">
+
+									<select class="form-control" ng-model="typeValue" ng-change="filt()">
+										<option value="0">全部</option>
+										<option value="1">视频</option>
+										<option value="2">音频</option>
+										<option value="3">图书</option>
+										<option value="4">图片</option>
+									</select>
+
+								</div>
+								</div>
+								<div class="pull-left clearfix">
+								<label class="pull-left mylabel">状态：</label>
+								<div class="pull-left marginR1">
+
+									<select class="form-control" ng-model="statusValue" ng-change="filt()">
+										<option value="-1">全部</option>
+										<option value="0">待审核</option>
+										<option value="1">已通过</option>
+										<option value="2">已拒绝</option>
+									</select>
+
+								</div>
+								</div>
+								<div class="pull-left clearfix">
+								<label class="pull-left mylabel">公开度：</label>
+								<div class="pull-left marginR1">
+
+									<select class="form-control" ng-model="openFlgValue" ng-change="filt()">
+										<option value="-1">全部</option>
+										<option value="0">私有</option>
+										<option value="1">公有</option>
+										
+									</select>
+
+								</div>
+								</div>
+								<div class="pull-left mysearch newBtn">
+									<input type="text" class="form-control serachradius" placeholder="请输入内容" ng-model="searchName" />
+									<button class="btn searchbtn" ng-click="filt();">搜索</button>
+								</div>
+						</div>
+						<table class="table table-bordered table-striped" >
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>公开度</th>
+									<th>大分类</th>
+									<th>子分类</th>
+									<th>类型</th>
+									<th style="width: 10%;">名称</th>
+									<th>下载</th>
+									<th>点赞</th>
+									<th>浏览</th>
+									<th>状态</th>
+									<th style="width: 21%;">操作</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in list" class="gradeX">
+									<td>{{(currentPage-1)*10+($index+1)}}</td>
+									<td>{{x.openFlg | isOpen}}</td>
+									<td>{{x.fileCateName}}</td>
+									<td>{{x.fileSubCateName}}</td>
+									<td>{{x.type | type}}</td>
+									<td>{{x.name}}</td>
+									<td>{{x.downloadCnt}}</td>
+									<td>{{x.loveCnt}}</td>
+									<td>{{x.cnt}}</td>
+									<td>{{x.status | status}}</td>
+									<td>
+										<a ng-if="x.status == 0" data-toggle="modal" data-target="#myModal" ng-click="passInfo(x.id);">通过</a>
+										<a ng-if="x.status == 0" data-toggle="modal" data-target="#myModal1" ng-click="refuseInfo(x.id);">拒绝</a>
+										<a data-toggle="modal" data-target="#myModal2" ng-click="deleteInfo(x.id);">删除</a>
+										<a href="t/detail.html?id={{x.id}}">详情</a>
+									</td>
+								</tr>			
+							</tbody>
+							
+						</table>
+						<div class="">
+							<pager page-count="pageCount" total-count="totalCount"
+								current-page="currentPage" on-page-change="onPageChange()"
+								first-text="首页" last-text="尾页" prev-text="上一页" next-text="下一页"></pager>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">操作</h3>
+            </div>
+            <div class="modal-body">
+            	<input type="hidden" id="passid">
+                <p>你确定要通过该课件吗？</p>
+                
+
+            </div>
+            <div class="modal-footer">
+            	<button class="btn btn-primary" type="button" ng-click="pass();">确定</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal1" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">操作</h3>
+            </div>
+            <div class="modal-body">
+            	<input type="hidden" id="refuseid">
+                <p>你确定要拒绝该课件吗？</p>
+                
+
+            </div>
+            <div class="modal-footer">
+            	<button class="btn btn-primary" type="button" ng-click="refuse();">确定</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal2" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">操作</h3>
+            </div>
+            <div class="modal-body">
+            	<input type="hidden" id="deleteid">
+                <p>你确定要删除该课件吗？</p>
+                
+
+            </div>
+            <div class="modal-footer">
+            	<button class="btn btn-primary" type="button" ng-click="deleteFile();">确定</button>
+                <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+	table{
+		table-layout:fixed;
+	} 
+	td {
+         white-space:nowrap;overflow:hidden;text-overflow: ellipsis;
+	} 
+</style>

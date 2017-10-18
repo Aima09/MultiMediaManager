@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjb.mapper.MUserMapper">
+	<resultMap id="mUserResultMap" type="MUser">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="role" property="role" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="del_flg" property="del_flg" jdbcType="INTEGER" />
+		<result column="create_datetime" property="create_datetime" jdbcType="TIMESTAMP" />
+		<result column="create_user_id" property="create_user_id" jdbcType="INTEGER" />
+		<result column="update_datetime" property="update_datetime" jdbcType="TIMESTAMP" />
+		<result column="update_user_id" property="update_user_id" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<resultMap id="mUserResultMap1" type="MUser">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="role" property="role" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="columns">
+		id, account, pwd, name, phone, role, status, del_flg, create_datetime, create_user_id, update_datetime, update_user_id
+	</sql>
+	
+	<sql id="insertValues">
+		null,
+		#{account, jdbcType=VARCHAR},
+		#{pwd, jdbcType=VARCHAR},
+		#{name, jdbcType=VARCHAR},
+		#{phone, jdbcType=VARCHAR},
+		#{role, jdbcType=INTEGER},
+		#{status, jdbcType=INTEGER},
+		#{del_flg, jdbcType=INTEGER},
+		#{create_datetime, jdbcType=TIMESTAMP},
+		#{create_user_id, jdbcType=INTEGER},
+		#{update_datetime, jdbcType=TIMESTAMP},
+		#{update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="insertListValues">
+		null,
+		#{dto.account, jdbcType=VARCHAR},
+		#{dto.pwd, jdbcType=VARCHAR},
+		#{dto.name, jdbcType=VARCHAR},
+		#{dto.phone, jdbcType=VARCHAR},
+		#{dto.role, jdbcType=INTEGER},
+		#{dto.status, jdbcType=INTEGER},
+		#{dto.del_flg, jdbcType=INTEGER},
+		#{dto.create_datetime, jdbcType=TIMESTAMP},
+		#{dto.create_user_id, jdbcType=INTEGER},
+		#{dto.update_datetime, jdbcType=TIMESTAMP},
+		#{dto.update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updateValues">
+		id=#{id, jdbcType=INTEGER},
+		account=#{account, jdbcType=VARCHAR},
+		pwd=#{pwd, jdbcType=VARCHAR},
+		name=#{name, jdbcType=VARCHAR},
+		phone=#{phone, jdbcType=VARCHAR},
+		role=#{role, jdbcType=INTEGER},
+		status=#{status, jdbcType=INTEGER},
+		del_flg=#{del_flg, jdbcType=INTEGER},
+		create_datetime=#{create_datetime, jdbcType=TIMESTAMP},
+		create_user_id=#{create_user_id, jdbcType=INTEGER},
+		update_datetime=#{update_datetime, jdbcType=TIMESTAMP},
+		update_user_id=#{update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updateListValues">
+		id=#{dto.id, jdbcType=INTEGER},
+		account=#{dto.account, jdbcType=VARCHAR},
+		pwd=#{dto.pwd, jdbcType=VARCHAR},
+		name=#{dto.name, jdbcType=VARCHAR},
+		phone=#{dto.phone, jdbcType=VARCHAR},
+		role=#{dto.role, jdbcType=INTEGER},
+		status=#{dto.status, jdbcType=INTEGER},
+		del_flg=#{dto.del_flg, jdbcType=INTEGER},
+		create_datetime=#{dto.create_datetime, jdbcType=TIMESTAMP},
+		create_user_id=#{dto.create_user_id, jdbcType=INTEGER},
+		update_datetime=#{dto.update_datetime, jdbcType=TIMESTAMP},
+		update_user_id=#{dto.update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updatePartialValues">
+		id=#{id, jdbcType=INTEGER}
+		<if test="account != null">
+			<trim prefix=",">
+				account=#{account, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="pwd != null">
+			<trim prefix=",">
+				pwd=#{pwd, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="name != null">
+			<trim prefix=",">
+				name=#{name, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="phone != null">
+			<trim prefix=",">
+				phone=#{phone, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="role != null">
+			<trim prefix=",">
+				role=#{role, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="status != null">
+			<trim prefix=",">
+				status=#{status, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="del_flg != null">
+			<trim prefix=",">
+				del_flg=#{del_flg, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="create_datetime != null">
+			<trim prefix=",">
+				create_datetime=#{create_datetime, jdbcType=TIMESTAMP}
+			</trim>
+		</if>
+		<if test="create_user_id != null">
+			<trim prefix=",">
+				create_user_id=#{create_user_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="update_datetime != null">
+			<trim prefix=",">
+				update_datetime=#{update_datetime, jdbcType=TIMESTAMP}
+			</trim>
+		</if>
+		<if test="update_user_id != null">
+			<trim prefix=",">
+				update_user_id=#{update_user_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+	</sql>
+	<sql id="whereConditoin1">
+	    <if test="account != null">
+	        <if test="account.length() > 0"></if>
+			and ( instr(account, #{account, jdbcType=VARCHAR}) > 0
+		</if>
+		<if test="name != null">
+			<if test="name.length() > 0">
+				or instr(name, #{name, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="phone != null">
+			<if test="phone.length() > 0">
+				or instr(phone, #{phone, jdbcType=VARCHAR}) > 0 )
+			</if>
+		</if>
+	</sql>
+	<sql id="whereCondition">
+		<if test="id != null">
+			and id = #{id, jdbcType=INTEGER}
+		</if>
+		<if test="account != null">
+			and account = #{account, jdbcType=VARCHAR}
+		</if>
+		<if test="pwd != null">
+			and pwd = #{pwd, jdbcType=VARCHAR}
+		</if>
+		<if test="name != null">
+			<if test="name.length() > 0">
+				and instr(name, #{name, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="phone != null">
+			<if test="phone.length() > 0">
+				and instr(phone, #{phone, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="role != null">
+			and role = #{role, jdbcType=INTEGER}
+		</if>
+		<if test="status != null">
+			and status = #{status, jdbcType=INTEGER}
+		</if>
+		<if test="del_flg != null">
+			and del_flg = #{del_flg, jdbcType=INTEGER}
+		</if>
+		<if test="create_datetime != null">
+			and create_datetime = #{create_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="create_user_id != null">
+			and create_user_id = #{create_user_id, jdbcType=INTEGER}
+		</if>
+		<if test="update_datetime != null">
+			and update_datetime = #{update_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="update_user_id != null">
+			and update_user_id = #{update_user_id, jdbcType=INTEGER}
+		</if>
+	</sql>
+	
+	<select id="count" resultType="int">
+		select count(id)
+		from m_user
+	</select>
+	
+	<select id="countByDto" resultType="int" parameterType="MUser">
+		select count(id)
+		from m_user
+		where 1=1 <include refid="whereConditoin1"/>
+	</select>
+	<select id="countByAccount" resultType="int" parameterType="java.lang.String">
+		select count(id)
+		from m_user
+		where account = #{account}
+	</select>
+	
+	<select id="findById" resultMap="mUserResultMap" parameterType="int">
+		select <include refid="columns"/>
+		from m_user
+		where id = #{id}
+	</select>
+	
+	<select id="findAll" resultMap="mUserResultMap">
+		select <include refid="columns"/>
+		from m_user
+	</select>
+	
+	<select id="findByDto" resultMap="mUserResultMap" parameterType="MUser">
+		select <include refid="columns"/>
+		from m_user
+		where 1=1 and del_flg = 0 <include refid="whereConditoin1"/>
+	</select>
+	
+	<insert id="insert" parameterType="MUser">
+		insert into m_user
+		(<include refid="columns"/>)
+		values(<include refid="insertValues"/>);
+		<selectKey resultType="int" keyProperty="id">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertList" parameterType="java.util.List">
+		insert into m_user
+		(<include refid="columns"/>)
+		values
+			<foreach collection="list" item="dto" index="index" separator=",">
+				(<include refid="insertListValues"/>)
+			</foreach>
+	</insert>
+	
+	<update id="update" parameterType="MUser">
+		update m_user
+		set <include refid="updateValues"/>
+		where id = #{id}
+	</update>
+	
+	<!--update id="updateList" parameterType="java.util.List">
+		update m_user
+		set <include refid="updateListValues"/>
+		where id in
+		<foreach collection="list" item="dto" open="(" separator="," close=")">
+			#{dto.id}
+		</foreach>
+	</update-->
+	
+	<update id="updatePartial" parameterType="MUser">
+		update m_user
+		set <include refid="updatePartialValues"/>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from m_user
+		where id = #{id}
+	</delete>
+	
+	<delete id="deleteList" parameterType="java.util.List">
+		delete from m_user
+		where id in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<select id="LoginByDto" resultMap="mUserResultMap1" parameterType="MUser">
+		SELECT	
+			id,
+			account,
+			pwd,
+			NAME,
+			phone,
+			role,
+			STATUS
+		FROM	
+			m_user
+		WHERE	
+			account = #{account}
+			AND pwd = #{pwd}
+			AND role = #{role}
+			AND del_flg = 0
+	</select>
+</mapper>

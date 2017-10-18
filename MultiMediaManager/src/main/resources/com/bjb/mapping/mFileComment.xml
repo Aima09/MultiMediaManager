@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjb.mapper.MFileCommentMapper">
+	<resultMap id="mFileCommentResultMap" type="MFileComment">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="file_id" property="file_id" jdbcType="INTEGER" />
+		<result column="file_name" property="file_name" jdbcType="VARCHAR" />
+		<result column="msg" property="msg" jdbcType="VARCHAR" />
+		<result column="del_flg" property="del_flg" jdbcType="INTEGER" />
+		<result column="create_datetime" property="create_datetime" jdbcType="TIMESTAMP" />
+		<result column="create_user_id" property="create_user_id" jdbcType="INTEGER" />
+		<result column="create_user_name" property="create_user_name" jdbcType="VARCHAR" />
+		<result column="update_datetime" property="update_datetime" jdbcType="TIMESTAMP" />
+		<result column="update_user_id" property="update_user_id" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="columns">
+		id, file_id, msg, del_flg, create_datetime, create_user_id, update_datetime, update_user_id
+	</sql>
+	
+	<sql id="insertValues">
+		null,
+		#{file_id, jdbcType=INTEGER},
+		#{msg, jdbcType=VARCHAR},
+		#{del_flg, jdbcType=INTEGER},
+		#{create_datetime, jdbcType=TIMESTAMP},
+		#{create_user_id, jdbcType=INTEGER},
+		#{update_datetime, jdbcType=TIMESTAMP},
+		#{update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="insertListValues">
+		null,
+		#{dto.file_id, jdbcType=INTEGER},
+		#{dto.msg, jdbcType=VARCHAR},
+		#{dto.del_flg, jdbcType=INTEGER},
+		#{dto.create_datetime, jdbcType=TIMESTAMP},
+		#{dto.create_user_id, jdbcType=INTEGER},
+		#{dto.update_datetime, jdbcType=TIMESTAMP},
+		#{dto.update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updateValues">
+		id=#{id, jdbcType=INTEGER},
+		file_id=#{file_id, jdbcType=INTEGER},
+		msg=#{msg, jdbcType=VARCHAR},
+		del_flg=#{del_flg, jdbcType=INTEGER},
+		create_datetime=#{create_datetime, jdbcType=TIMESTAMP},
+		create_user_id=#{create_user_id, jdbcType=INTEGER},
+		update_datetime=#{update_datetime, jdbcType=TIMESTAMP},
+		update_user_id=#{update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updateListValues">
+		id=#{dto.id, jdbcType=INTEGER},
+		file_id=#{dto.file_id, jdbcType=INTEGER},
+		msg=#{dto.msg, jdbcType=VARCHAR},
+		del_flg=#{dto.del_flg, jdbcType=INTEGER},
+		create_datetime=#{dto.create_datetime, jdbcType=TIMESTAMP},
+		create_user_id=#{dto.create_user_id, jdbcType=INTEGER},
+		update_datetime=#{dto.update_datetime, jdbcType=TIMESTAMP},
+		update_user_id=#{dto.update_user_id, jdbcType=INTEGER}
+	</sql>
+	
+	<sql id="updatePartialValues">
+		id=#{id, jdbcType=INTEGER}
+		<if test="file_id != null">
+			<trim prefix=",">
+				file_id=#{file_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="msg != null">
+			<trim prefix=",">
+				msg=#{msg, jdbcType=VARCHAR}
+			</trim>
+		</if>
+		<if test="del_flg != null">
+			<trim prefix=",">
+				del_flg=#{del_flg, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="create_datetime != null">
+			<trim prefix=",">
+				create_datetime=#{create_datetime, jdbcType=TIMESTAMP}
+			</trim>
+		</if>
+		<if test="create_user_id != null">
+			<trim prefix=",">
+				create_user_id=#{create_user_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+		<if test="update_datetime != null">
+			<trim prefix=",">
+				update_datetime=#{update_datetime, jdbcType=TIMESTAMP}
+			</trim>
+		</if>
+		<if test="update_user_id != null">
+			<trim prefix=",">
+				update_user_id=#{update_user_id, jdbcType=INTEGER}
+			</trim>
+		</if>
+	</sql>
+	
+	<sql id="whereCondition">
+		<if test="id != null">
+			and id = #{id, jdbcType=INTEGER}
+		</if>
+		<if test="file_id != null">
+			and file_id = #{file_id, jdbcType=INTEGER}
+		</if>
+		<if test="msg != null">
+			<if test="msg.length() > 0">
+				and instr(msg, #{msg, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="del_flg != null">
+			and del_flg = #{del_flg, jdbcType=INTEGER}
+		</if>
+		<if test="create_datetime != null">
+			and create_datetime = #{create_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="create_user_id != null">
+			and create_user_id = #{create_user_id, jdbcType=INTEGER}
+		</if>
+		<if test="update_datetime != null">
+			and update_datetime = #{update_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="update_user_id != null">
+			and update_user_id = #{update_user_id, jdbcType=INTEGER}
+		</if>
+	</sql>
+	
+	<sql id="whereCondition2">
+		<if test="id != null">
+			and mfc.id = #{id, jdbcType=INTEGER}
+		</if>
+		<if test="file_id != null">
+			and mfc.file_id = #{file_id, jdbcType=INTEGER}
+		</if>
+		<if test="msg != null">
+			<if test="msg.length() > 0">
+				and instr(mfc.msg, #{msg, jdbcType=VARCHAR}) > 0
+			</if>
+		</if>
+		<if test="del_flg != null">
+			and mfc.del_flg = #{del_flg, jdbcType=INTEGER}
+		</if>
+		<if test="create_datetime != null">
+			and mfc.create_datetime = #{create_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="create_user_id != null">
+			and mfc.create_user_id = #{create_user_id, jdbcType=INTEGER}
+		</if>
+		<if test="update_datetime != null">
+			and mfc.update_datetime = #{update_datetime, jdbcType=TIMESTAMP}
+		</if>
+		<if test="update_user_id != null">
+			and mfc.update_user_id = #{update_user_id, jdbcType=INTEGER}
+		</if>
+	</sql>
+	
+	<select id="count" resultType="int">
+		select count(id)
+		from m_file_comment
+	</select>
+	
+	<select id="countByDto" resultType="int" parameterType="MFileComment">
+		select count(id)
+		from m_file_comment
+		where 1=1 <include refid="whereCondition"/>
+	</select>
+	
+	<select id="findById" resultMap="mFileCommentResultMap" parameterType="int">
+		SELECT
+			mfc.id,
+			mfc.file_id,
+			mfc.msg,
+			mfc.create_datetime,
+			mfc.create_user_id,
+			mfc.update_datetime,
+			mfc.update_user_id,
+			mf. NAME AS file_name,
+			mu.`name` AS create_user_name
+		FROM
+			m_file_comment mfc
+		LEFT JOIN m_file mf ON mf.id = mfc.file_id
+		LEFT JOIN m_user mu ON mu.id = mfc.create_user_id
+		where del_flg = 0 and mfc.id = #{id}
+	</select>
+	
+	<select id="findAll" resultMap="mFileCommentResultMap">
+		SELECT
+			mfc.id,
+			mfc.file_id,
+			mfc.msg,
+			mfc.create_datetime,
+			mfc.create_user_id,
+			mfc.update_datetime,
+			mfc.update_user_id,
+			mf. NAME AS file_name,
+			mu.`name` AS create_user_name
+		FROM
+			m_file_comment mfc
+		LEFT JOIN m_file mf ON mf.id = mfc.file_id
+		LEFT JOIN m_user mu ON mu.id = mfc.create_user_id
+		ORDER BY mfc.update_datetime DESC
+	</select>
+	
+	<select id="findByDto" resultMap="mFileCommentResultMap" parameterType="MFileComment">
+		SELECT
+			mfc.id,
+			mfc.file_id,
+			mfc.msg,
+			mfc.create_datetime,
+			mfc.create_user_id,
+			mfc.update_datetime,
+			mfc.update_user_id,
+			mf. NAME AS file_name,
+			mu.`name` AS create_user_name
+		FROM
+			m_file_comment mfc
+		LEFT JOIN m_file mf ON mf.id = mfc.file_id
+		LEFT JOIN m_user mu ON mu.id = mfc.create_user_id
+		WHERE 1=1 <include refid="whereCondition2"/>
+		ORDER BY mfc.update_datetime DESC
+	</select>
+	
+	<insert id="insert" parameterType="MFileComment">
+		insert into m_file_comment
+		(<include refid="columns"/>)
+		values(<include refid="insertValues"/>);
+		<selectKey resultType="int" keyProperty="id">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertList" parameterType="java.util.List">
+		insert into m_file_comment
+		(<include refid="columns"/>)
+		values
+			<foreach collection="list" item="dto" index="index" separator=",">
+				(<include refid="insertListValues"/>)
+			</foreach>
+	</insert>
+	
+	<update id="update" parameterType="MFileComment">
+		update m_file_comment
+		set <include refid="updateValues"/>
+		where id = #{id}
+	</update>
+	
+	<!--update id="updateList" parameterType="java.util.List">
+		update m_file_comment
+		set <include refid="updateListValues"/>
+		where id in
+		<foreach collection="list" item="dto" open="(" separator="," close=")">
+			#{dto.id}
+		</foreach>
+	</update-->
+	
+	<update id="updatePartial" parameterType="MFileComment">
+		update m_file_comment
+		set <include refid="updatePartialValues"/>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from m_file_comment
+		where id = #{id}
+	</delete>
+	
+	<delete id="deleteList" parameterType="java.util.List">
+		delete from m_file_comment
+		where id in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>

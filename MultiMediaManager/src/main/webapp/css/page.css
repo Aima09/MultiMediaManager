@@ -1,0 +1,11 @@
+
+.paging ul li a {
+	border:none !important;
+}
+.paging ul li a{
+	background-color: #FFF !important;
+	color:#000 !important;
+}
+.paging ul li .nocolor{
+	color:#494949 !important;
+}
